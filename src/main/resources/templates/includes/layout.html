@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:fragment="base(title, headEtc, content)">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:fragment="base(title, headEtc, location, content)">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -204,13 +204,7 @@
                             <a href="/">영등포본동</a>
                         </div>
                         <div class="location-next">></div>
-                        <div class="location-text">
-                            <a href="/">우리동이야기</a>
-                        </div>
-                        <div class="location-next">></div>
-                        <div class="location-text last">
-                            <a href="/">영등포본동 주민센터</a>
-                        </div>
+                        <th:block th:replace="${location}"></th:block>
                         <div class="location-btns">
                             <a href="#" class="btn-location btn-print" title="프린트 하기">프린트</a>
                             <button type="button" id="btn_share" class="btn-location btn-share" title="SNS 공유하기">SNS 공유하기</button>
@@ -225,7 +219,7 @@
                     </div>
                 </div>
             </div>
-            <!-- location -->
+            <!-- //location -->
 
             <!-- main -->
             <main th:replace="${content}"></main>

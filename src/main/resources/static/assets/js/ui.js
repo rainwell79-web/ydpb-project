@@ -9,17 +9,6 @@ $(document).ready(function() {
  * !!!공통영역 load 호출 이후 스크립트 추가를 위해 함수화 한 것이므로 백엔드 개발 시 수정할 수 있음을 인지할 것!!!
  */
 function initUi() {
-    // 메뉴 ID 있을 경우 title, location 정보 변경
-    if(typeof MENU_ID !== 'undefined') {
-        const MENU1 = MENU.find(item => item.id === MENU_ID.substring(0, 1));
-        const MENU2 = MENU1.sub.find(item => item.id === MENU_ID.substring(1, 2));
-        if(MENU_ID != 'AA') {
-            $('title').html(MENU2.name + ' | ' + MENU1.name + ' | ' + '영등포본동 주민센터');
-        }
-        $('.location .location-title h2').text(MENU2.name);
-        $('.location-path .location-text').eq(1).find('a').text(MENU1.name).attr('href', MENU1.href);
-        $('.location-path .location-text').eq(2).find('a').text(MENU2.name).attr('href', MENU2.href);
-    }
 
     // 링크 # 처리한 a 태그 클릭 이벤트 시 경고창 출력
     $('a[href="#"]').on('click', function(e) {
