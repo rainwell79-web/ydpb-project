@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:replace="~{includes/layout::base(~{::title}, ~{::headEtc}, ~{::content})}">
+<head>
+    <meta charset="UTF-8">
+    <title th:fragment="title">영등포본동 주민센터</title>
+    <th:block th:fragment="headEtc">
+        <script>const MENU_ID = 'DA';</script>
+    </th:block>
+</head>
+<body>
+    <main th:fragment="content">
+        <!-- contents -->
+        <div id="contnets" class="contents-community-guide inner">
+            <div class="box-explain citizen">
+                <div class="cont">
+                    <strong>자치회관이란?</strong>
+                    <p>[자치회관]은 어려운 이웃돕기, 서먹했던 이웃 간의 대화나누기, 지역의 각종 대소사 의논 등 각박해져가는 도심 속에 여유와 나눔의 장소를 제공하여 주민이 함께 지역공동체를 가꾸어 가는 주민자치 실현을 목적으로 하고 있습니다.</p>
+                </div>
+            </div>
+
+            <h3 class="title">자치회관이란?</h3>
+            <ul class="list-explain">
+                <li>[자치회관]은 어려운 이웃돕기, 서먹했던 이웃 간의 대화나누기, 지역의 각종 대소사 의논 등 각박해져가는 도심 속에 여유와 나눔의 장소를 제공하여 주민이 함께 지역공동체를 가꾸어 가는 주민자치 실현을 목적으로 하고 있습니다.</li>
+                <li>자치회관은 반드시 시설을 설치하여 운영하는 것에 한정하지 않으며, 물적(物的) 시설이 아닌 다양한 프로그램을 지역실정에 맞게 운영할 수 있습니다. 예를 들면 문화여가(전시회, 문화교실, 동호회, 컴퓨터교실 등), 복지기능(놀이방, 탁아소, 노인교실 등), 편익기능(회의실, 농산물 직거래장터, 자원 재활용센터 등), 사회진흥(교통질서 , 자율방범, 청소년계도 등)이 있습니다.</li>
+                <li>자치회관의 운영은 동장이 책임을 지지만 관할구역내의 주민대표로 구성되는[주민자치위원회]가 중심적인 역할을 할 뿐 아니라 각 분야에서 자원봉사자의 참여를 적극 권장함으로써 주민이 실질적인 운영 주체가 되도록 하고 있습니다.</li>
+            </ul>
+
+            <h3 class="title">이용안내</h3>
+            <ul class="list-explain">
+                <li>이용대상: 영등포 구민 누구나</li>
+                <li>운영시간: 09:00 ~ 18:00</li>
+                <li>자치회관별 운영프로그램 여건에 따라 공휴일 개방 및 운영시간은 연장될 수 있습니다.</li>
+                <li>『자치회관』내 장비. 비품 및 시설은 주민모두의 소중한 재산입니다. 이용주민은 선량한 이용자로서의 의무와 책임을 다하여 주시기 바랍니다.</li>
+            </ul>
+
+            <div class="btns">
+                <a href="#" class="btn btn-move">자치회관 운영조례 바로가기</a>
+            </div>
+        </div>
+        <!-- //contents -->
+    </main>
+</body>
+</html>

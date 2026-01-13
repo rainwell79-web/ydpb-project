@@ -1,0 +1,111 @@
+@charset "utf-8";
+
+/* member common */
+.member-wrap {letter-spacing: 0; line-height: 24px;}
+
+/* member header */
+.member-header {background: linear-gradient(to right, #006fec 0%,#03a09a 100%);}
+.member-header::before {content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: url(../images/member/top_bg.png) no-repeat center top;}
+.member-header .header-inner {position: relative; max-width: 1200px; height: 400px; margin: 0 auto; padding-top: 95px; color: #fff; text-align: center;}
+.member-header .header-inner h1 a {display: inline-block; width: 169px; height: 69px; vertical-align: middle; background: url(../images/member/member_logo.png) no-repeat;}
+.member-header .header-inner h1 b {margin-left: 21px; font-size: 3.8rem; font-weight: 600; vertical-align: middle;}
+.member-header .header-inner p {margin-top: 12px; font-size: 1.8rem;}
+
+/* member footer */
+.member-footer {margin-top: 40px; padding: 35px 0 65px; text-align: center; background: #f6f7fb;}
+.member-footer address {color: #222; font-style: normal;}
+.member-footer address p + p {margin-top: 8px;}
+.member-footer address b {margin-right: 6px; font-weight: 400;}
+.member-footer address span + b {margin-left: 17px;}
+.member-footer .copyright {margin-top: 18px; color: #848484;}
+
+/* member container */
+.member-container {position: relative; max-width: 1200px; margin: -84px auto 0;}
+.membership {position: relative; margin-bottom: 40px; border: 10px solid #fff;}
+.member-inner {border: 1px solid #1e377a;}
+
+/* member menu */
+.member-menu {display: flex; flex-flow: row nowrap;}
+.member-menu li {flex: 1; position: relative;}
+.member-menu li::before {content: ""; position: absolute; left: -1px; top: 0; width: 1px; height: 100%; background: rgba(255, 255, 255, 0.1);}
+.member-menu li:not(:last-child).active::after {content: ""; position: absolute; left: 100%; top: 0; width: 21px; height: 100%; background: url(../images/member/pattern.png); z-index: 1;}
+.member-menu li a,
+.member-menu li.active span {display: block; width: 100%; text-align: center; line-height: 74px;}
+.member-menu li a {color: #fff; font-size: 2rem; background: #1e377a;}
+.member-menu li.active span {color: #1e377a; font-size: 2.2rem; font-weight: 600; background: #fff; z-index: 1;}
+
+/* contents member */
+.member-container .member-title {color: #000; font-size: 2.2rem; font-weight: 600; text-align: center;}
+.member-container .explain {margin-top: 23px; color: #464646; text-align: center;}
+.member-container .explain strong {color: #1856b5; font-weight: 400;}
+
+/* contents login */
+.contents-login {display: flex; padding: 60px 0;}
+.contents-login > section {width: 50%; padding: 0 70px;}
+
+/* 회원로그인 */
+.login-member {border-right: 1px solid #adb1c0;}
+.login-form {position: relative; margin-top: 25px; padding-right: 122px;}
+.login-form li {display: flex; flex-flow: row nowrap;}
+.login-form li:not(:first-child) {margin-top: 10px;}
+.login-form li label {width: 70px; line-height: 44px;}
+.login-form li input {flex: 1; height: 44px; padding: 0 10px; font-size: 1.6rem; font-family: 'Spoqa Han Sans', sans-serif; line-height: 44px; border: 1px solid #b3b1b4;}
+.login-form li input:focus-visible {outline: 2px dashed orangered;}
+.login-form .btn-login {position: absolute; right: 0; top: 0; width: 110px; height: 100%; color: #fff; font-size: 1.6rem;; font-family: 'Spoqa Han Sans', sans-serif; border: 0 none; background: #2b4380; cursor: pointer;}
+.member-service {display: flex; flex-flow: row nowrap; margin: 20px 0 0 40px;}
+.member-service li {position: relative; padding: 0 30px;}
+.member-service li:not(:first-child)::before {content: ""; position: absolute; left: 0; top: 50%; width: 1px; height: 14px; background: #d0d0d0; transform: translateY(-50%);}
+.member-service a:hover {font-weight: 600;}
+.login-sns {margin-top: 45px;}
+.login-sns ul {margin-top: 25px;}
+.login-sns li:not(:first-child) {margin-top: 10px;}
+.login-sns li a {display: block; position: relative; width: 100%; height: 50px; padding: 0 50px 0 90px; line-height: 50px;}
+.login-sns li .btn-naver {color: #fff; background: #129b3c;}
+.login-sns li .btn-kakao {color: #333126; background: #f8da33;}
+.login-sns li a::before {content: ""; position: absolute; left: 0; top: 0; width: 60px; height: 100%;}
+.login-sns li .btn-naver::before {background: url(../images/member/icon_naver.png) no-repeat;}
+.login-sns li .btn-kakao::before {background: url(../images/member/icon_kakao.png) no-repeat;}
+.login-sns li a::after {content: ""; position: absolute; right: 20px; top: 50%; width: 8px; height: 14px; transform: translateY(-50%);}
+.login-sns li .btn-naver::after {background: url(../images/member/bullet_01.png) no-repeat;}
+.login-sns li .btn-kakao::after {background: url(../images/member/bullet_02.png) no-repeat;}
+.login-sns li a:hover {font-weight: 600;}
+
+/* 비회원로그인 */
+.login-non-member .certified {display: flex; justify-content: space-between; margin: 40px 0;}
+.login-non-member .certified li {flex: 1; text-align: center;}
+.login-non-member .certified li:last-child {margin-left: 50px;}
+.login-non-member .certified li::before {content: ""; display: block; width: 100%; height: 85px; margin-bottom: 30px; background-repeat: no-repeat; background-position: center center;}
+.login-non-member .certified .phone::before {background-image: url(../images/member/icon_mobile.png);}
+.login-non-member .certified .ipin::before {background-image: url(../images/member/icon_ipin.png);}
+.login-non-member .certified a {display: block; width: 100%; height: 50px; color: #fff; line-height: 48px; background: #2b4380;}
+.login-non-member .certified a:hover {font-weight: 600;}
+
+/* 회원정보 재동의 시행 안내 */
+.member-re-agree {position: relative; margin: 0 10px;}
+.member-re-agree > div {position: relative; padding: 40px 40px 47px;}
+.member-re-agree::before,
+.member-re-agree::after,
+.member-re-agree > div::before,
+.member-re-agree > div::after {content: ""; position: absolute; background: url(../images/member/pattern1.png) repeat;}
+.member-re-agree::before {left: 0; top: 0; width: 100%; height: 1px;}
+.member-re-agree::after {left: 0; bottom: 0; width: 100%; height: 1px;}
+.member-re-agree > div::before {left: 0; top: 0; width: 1px; height: 100%;}
+.member-re-agree > div::after {right: 0; top: 0; width: 1px; height: 100%;}
+.member-re-agree .member-title {margin-bottom: 25px; text-align: left;}
+
+/* contents join */
+.contents-join {padding: 60px 0 30px;}
+.join-flow {display: flex; flex-flow: row nowrap; position: relative; margin-bottom: 55px;}
+.join-flow::before {content: ""; position: absolute; top: 26px; left: 14.5%; right: 14.5%; height: 3px; background: #e5e5e5;}
+.join-flow li {position: relative; width: 25%; color: #888; text-align: center; z-index: 1;}
+.join-flow li::before {content: ""; display: block; width: 56px; height: 56px; margin: 0 auto 12px; border-radius: 50%; background: #888 url(../images/member/flow_check_01.png) no-repeat center center;}
+.join-flow li b {display: block; margin-bottom: 5px; font-size: 1.5rem; line-height: 17px;}
+.join-flow li span {font-size: 1.8rem;}
+.join-flow .active::before {background-color: #0074e2; background-image: url(../images/member/flow_check_02.png);}
+.join-flow .active b {color: #0074e2;}
+.join-form {margin: 0 60px;}
+.join-form .table-form .col1 {width: 150px;}
+.join-form .table-form th {text-align: center; border: 1px solid #d9d9d9;}
+.join-form .table-form td {border: 1px solid #d9d9d9;}
+.join-form .table-form .btn:hover {font-weight: 600;}
+.join-form .btns {text-align: center;}

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:fragment="base(title, headEtc, content)">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:replace="${title}">Layout</title>
+    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+    <link rel="stylesheet" href="/assets/css/reset.css">
+    <link rel="stylesheet" href="/assets/css/common.css">
+    <link rel="stylesheet" href="/assets/css/style_page.css">
+    <script src="/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="/assets/js/prefixfree.min.js"></script>
+    <script src="/assets/js/ui.js"></script>
+    <th:block th:replace="${headEtc}"></th:block>
+</head>
+<body>
+    <nav id="skipNav" class="skip-nav">
+        <a href="#gnb">주메뉴 바로가기</a>
+        <a href="#contents">본문 바로가기</a>
+    </nav>
+
+    <div id="wrap">
+        <!-- header -->
+        <header class="header">
+            <!-- 누리집 -->
+            <div class="nurizip">
+                <div class="inner">
+                    <p>이 누리집은 대한민국 공식 전자정부 누리집입니다.</p>
+                </div>
+            </div>
+            <!-- //누리집 -->
+
+            <!-- 개발현황 -->
+            <div class="dev-status">
+                <div class="inner">
+                    <a href="#modalDevStatus" class="btn-dev" data-modal="open" data-target="modalDevStatus">개발현황</a>
+                    <div class="dev-news">
+                        <ul>
+                            <li><span class="new">NEW</span> 우리동소식 페이지 추가</li>
+                            <li><span class="new">NEW</span> 주민제안 페이지 추가</li>
+                            <li><span class="new">NEW</span> 자치회관 페이지 추가</li>
+                            <li class="clone"><span class="new">NEW</span> 우리동소식 페이지 추가</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- //개발현황 -->
+            
+            <div id="header_menu" class="header-menu">
+                <div class="inner">
+                    <h1 class="logo">
+                        <a href="/"><img src="/assets/images/common/header_logo.png" alt="영등포본동 주민센터"></a>
+                    </h1>
+
+                    <!-- gnb -->
+                    <nav id="gnb" class="gnb">
+                        <div class="cover">
+                            <div class="outline outline1" data-outline="1">
+                                <strong>우리동이야기</strong>
+                                <p>희망·행복·미래도시 영등포</p>
+                            </div>
+                            <div class="outline outline2" data-outline="2">
+                                <strong>우리동소식</strong>
+                                <p>희망·행복·미래도시 영등포</p>
+                            </div>
+                            <div class="outline outline3" data-outline="3">
+                                <strong>주민제안</strong>
+                                <p>희망·행복·미래도시 영등포</p>
+                            </div>
+                            <div class="outline outline4" data-outline="4">
+                                <strong>자치회관</strong>
+                                <p>희망·행복·미래도시 영등포</p>
+                            </div>
+                        </div>
+                        <ul class="gnb-dep1">
+                            <li class="gnb1" data-gnb-count="1">
+                                <div class="gnb-title">
+                                    <a href="/">우리동이야기</a>
+                                </div>
+                                <ul class="gnb-dep2">
+                                    <li>
+                                        <a href="/">영등포본동 주민센터</a>
+                                    </li>
+                                    <li>
+                                        <a href="/dong/staff.html">직원별업무안내</a>
+                                    </li>
+                                    <li>
+                                        <a href="/dong/status.html">일반현황</a>
+                                    </li>
+                                    <li>
+                                        <a href="/dong/directions.html">찾아오시는길</a>
+                                    </li>
+                                    <li>
+                                        <a href="/dong/origin.html">동유래</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="gnb2" data-gnb-count="2">
+                                <div class="gnb-title">
+                                    <a href="/news/dong_news_list.html">우리동소식</a>
+                                </div>
+                                <ul class="gnb-dep2">
+                                    <li>
+                                        <a href="/news/dong_news_list.html">우리동소식</a>
+                                    </li>
+                                    <li>
+                                        <a href="/news/gu_news_list.html">구청소식</a>
+                                    </li>
+                                    <li>
+                                        <a href="/news/gallery_list.html">포토갤러리</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="gnb3" data-gnb-count="3">
+                                <div class="gnb-title">
+                                    <a href="/proposal/proposal_guide.html">주민제안</a>
+                                </div>
+                                <ul class="gnb-dep2">
+                                    <li>
+                                        <a href="/proposal/proposal_guide.html">주민제안 안내</a>
+                                    </li>
+                                    <li>
+                                        <a href="/proposal/proposal_list.html">주민제안</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="gnb4" data-gnb-count="4">
+                                <div class="gnb-title">
+                                    <a href="/community/community_guide.html">자치회관</a>
+                                </div>
+                                <ul class="gnb-dep2">
+                                    <li>
+                                        <a href="/community/community_guide.html">자치회관이란?</a>
+                                    </li>
+                                    <li>
+                                        <a href="/community/community_list.html">자치회관 게시판</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="disabled">주민자치의원</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="disabled">프로그램현황</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- //gnb -->
+
+                    <div class="member-btns">
+                        <a href="/member/login.html" class="btn-login">로그인</a>
+                        <a href="/member/join.html" class="btn-join">회원가입</a>
+                        <!-- <strong>test</strong>
+                        <a href="#" class="btn-logout">로그아웃</a> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-utils">
+                <div class="inner">
+                    <div class="weather">
+                        <div class="weather-image">
+                            <img src="/assets/images/weather/weather_04.png" alt="흐림 이미지">
+                        </div>
+                        <div class="weather-info">
+                            <ul>
+                                <li id="weather_temperature_num" class="temperature-num">4.1˚C</li>
+                                <li id="weather_temperature_text" class="temperature-text">흐림</li>
+                            </ul>
+                            <dl>
+                                <dt>미세먼지</dt>
+                                <dd id="dust_text1" class="dust01">좋음</dd>
+                                <dt>초미세먼지</dt>
+                                <dd id="dust_text2" class="dust01">좋음</dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <div class="header-search">
+                        <form action="#">
+                            <label for="header_search" class="blind">통합검색하기</label>
+                            <input type="search" name="header_search" id="header_search" class="input-search" placeholder="무엇을 도와드릴까요?">
+                            <input type="submit" class="btn-search" value="검색">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- //header -->
+
+        <!-- container -->
+        <div class="container">
+            <!-- location -->
+            <div class="location">
+                <div class="inner">
+                    <div class="location-title">
+                        <h2>영등포본동 주민센터</h2>
+                    </div>
+                    <div class="location-path">
+                        <div class="location-home">홈</div>
+                        <div class="location-next">></div>
+                        <div class="location-text">
+                            <a href="/">영등포본동</a>
+                        </div>
+                        <div class="location-next">></div>
+                        <div class="location-text">
+                            <a href="/">우리동이야기</a>
+                        </div>
+                        <div class="location-next">></div>
+                        <div class="location-text last">
+                            <a href="/">영등포본동 주민센터</a>
+                        </div>
+                        <div class="location-btns">
+                            <a href="#" class="btn-location btn-print" title="프린트 하기">프린트</a>
+                            <button type="button" id="btn_share" class="btn-location btn-share" title="SNS 공유하기">SNS 공유하기</button>
+                            <div class="sns-list">
+                                <a href="#" class="btn-location btn-facebook" title="페이스북 공유하기">페이스북</a>
+                                <a href="#" class="btn-location btn-blog" title="블로그 공유하기">블로그</a>
+                                <a href="#" class="btn-location btn-x" title="X 공유하기">엑스</a>
+                                <a href="#" class="btn-location btn-kakaostory" title="카카오스토리 공유하기">카카오스토리</a>
+                                <a href="#" class="btn-location btn-kakaotalk" title="카카오톡 공유하기">카카오톡</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- location -->
+
+            <!-- main -->
+            <main th:replace="${content}"></main>
+            <!-- //main -->
+                    
+            <!-- charge info -->
+            <div class="charge-info">
+                <ul>
+                    <li>
+                        <span class="info-name">담당부서</span>
+                        <span>영등포본동</span>
+                    </li>
+                    <li>
+                        <span class="info-name">담당전화번호</span>
+                        <span>02-2670-1026</span>
+                    </li>
+                </ul>
+            </div>
+            <!-- //charge info -->
+        </div>
+        <!-- //container -->
+
+        <footer class="footer">
+            <div class="inner">
+                <div class="footer-logo">
+                    <img src="/assets/images/common/footer_logo.png" alt="영등포본동">
+                </div>
+                <div class="footer-info">
+                    <div class="information">
+                        <address>[07260] 서울 영등포구 당산로 123 (당산동3가)</address>
+                        <ul>
+                            <li>
+                                <b>대표전화</b>
+                                <span>02-2670-3114 (120다산콜센터로 연결)</span>
+                            </li>
+                            <li>
+                                <b>비상전화</b>
+                                <span>02-2670-3000 (야간, 공휴일/당직실)</span>
+                            </li>
+                            <li>
+                                <b>FAX</b>
+                                <span>02-2670-3002</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="footer-link">
+                        <li>
+                            <a href="/dong/staff.html">업무안내</a>
+                        </li>
+                        <li>
+                            <a href="/dong/directions.html">찾아오시는길</a>
+                        </li>
+                    </ul>
+                    <div class="wa-mark">
+                        <img src="/assets/images/common/wa_mark.png" alt="과학기술정보통신부 WEB ACCESSIBILITY 마크(웹 접근성 품질인증 마크)">
+                    </div>
+                </div>
+                <div class="footer-policy">
+                    <ul>
+                        <li class="personal">
+                            <a href="#">개인정보처리방침</a>
+                        </li>
+                        <li>
+                            <a href="#">저작권정책</a>
+                        </li>
+                        <li>
+                            <a href="#">서비스오류신고</a>
+                        </li>
+                    </ul>
+                    <p class="copy">Copyright © YEONGDEUNGPO-GU. All rights reserved.</p>
+                </div>
+            </div>
+
+            <div id="modalDevStatus" class="modal-wrap">
+                <div class="modal modal-dev-status" data-role="modal" tabindex="-1">
+                    <header class="modal-header">
+                        <h3>개발현황</h3>
+                    </header>
+                    <div class="modal-body">
+                        <h4>진행 상황</h4>
+                        <div class="dev-status">
+                            <ul>
+                                <li>
+                                    <b>우리동소식 &GT; 포토갤러리</b>
+                                    <p>목록, 조회 화면 추가</p>
+                                    <span class="new">NEW</span>
+                                </li>
+                                <li>
+                                    <b>우리동소식 &GT; 구청소식</b>
+                                    <p>목록, 조회 화면 추가</p>
+                                    <span class="new">NEW</span>
+                                </li>
+                                <li>
+                                    <b>자치회관 &GT; 자치회관 게시판</b>
+                                    <p>목록, 조회 화면 추가</p>
+                                    <span class="new">NEW</span>
+                                </li>
+                                <li>
+                                    <b>자치회관 &GT; 자치회관이란?</b>
+                                    <p>화면 추가</p>
+                                </li>
+                                <li>
+                                    <b>주민제안 &GT; 주민제안</b>
+                                    <p>목록, 조회, 등록, 수정 화면 추가</p>
+                                </li>
+                                <li>
+                                    <b>주민제안 &GT; 주민제안 안내</b>
+                                    <p>화면 추가</p>
+                                </li>
+                                <li>
+                                    <b>우리동소식 &GT; 우리동소식</b>
+                                    <p>목록, 조회 화면 추가</p>
+                                </li>
+                                <li>
+                                    <b>우리동이야기 &GT; 동유래</b>
+                                    <p>화면 추가</p>
+                                </li>
+                                <li>
+                                    <b>우리동이야기 &GT; 찾아오시는길</b>
+                                    <p>화면 추가</p>
+                                </li>
+                                <li>
+                                    <b>우리동이야기 &GT; 일반현황</b>
+                                    <p>화면 추가</p>
+                                </li>
+                                <li>
+                                    <b>우리동이야기 &GT; 직원별업무안내</b>
+                                    <p>화면 추가</p>
+                                </li>
+                                <li>
+                                    <b>우리동이야기 &GT; 영등포본동 주민센터(메인화면)</b>
+                                    <p>화면 추가</p>
+                                </li>
+                                <li>
+                                    <b>회원 &GT; 회원가입</b>
+                                    <p>화면 추가</p>
+                                </li>
+                                <li>
+                                    <b>회원 &GT; 로그인</b>
+                                    <p>화면 추가</p>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <h4>개발 과제</h4>
+                        <table class="table table-emp">
+                            <colgroup>
+                                <col class="col1">
+                                <col class="col2">
+                                <col class="col3">
+                                <col class="col4">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>메뉴1depth</th>
+                                    <th>메뉴2depth</th>
+                                    <th>내용</th>
+                                    <th>현황</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>공통</td>
+                                    <td>해더</td>
+                                    <td>메뉴 DB 연동</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>공통</td>
+                                    <td>해더</td>
+                                    <td>통합검색 화면 추가</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>공통</td>
+                                    <td>해더</td>
+                                    <td>통합검색 DB 연동</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>공통</td>
+                                    <td>해더</td>
+                                    <td>날씨 API 적용</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>공통</td>
+                                    <td>해더</td>
+                                    <td>미세먼지 API 적용</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>공통</td>
+                                    <td>현재위치</td>
+                                    <td>메뉴 DB 연동</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr class="comp">
+                                    <td>회원</td>
+                                    <td>로그인</td>
+                                    <td>화면 추가</td>
+                                    <td>완료</td>
+                                </tr>
+                                <tr>
+                                    <td>회원</td>
+                                    <td>로그인</td>
+                                    <td>로그인 DB 연동</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>회원</td>
+                                    <td>로그아웃</td>
+                                    <td>로그아웃 구현</td>
+                                    <td></td>
+                                </tr>
+                                <tr class="comp">
+                                    <td>회원</td>
+                                    <td>회원가입</td>
+                                    <td>화면 추가</td>
+                                    <td>완료</td>
+                                </tr>
+                                <tr>
+                                    <td>회원</td>
+                                    <td>회원가입</td>
+                                    <td>입력값 유효성 검사</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>회원</td>
+                                    <td>회원가입</td>
+                                    <td>ID 중복 확인 DB 연동</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>회원</td>
+                                    <td>회원가입</td>
+                                    <td>회원 DB 추가</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr class="comp">
+                                    <td>우리동이야기</td>
+                                    <td>영등포본동 주민센터</td>
+                                    <td>화면 추가</td>
+                                    <td>완료</td>
+                                </tr>
+                                <tr>
+                                    <td>우리동이야기</td>
+                                    <td>영등포본동 주민센터</td>
+                                    <td>우리동소식 최신글 DB 연동</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>우리동이야기</td>
+                                    <td>영등포본동 주민센터</td>
+                                    <td>구청소식 최신글 DB 연동</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>우리동이야기</td>
+                                    <td>영등포본동 주민센터</td>
+                                    <td>갤러리 최신글 DB 연동</td>
+                                    <td></td>
+                                </tr>
+                                <tr class="comp">
+                                    <td>우리동이야기</td>
+                                    <td>직원별업무안내</td>
+                                    <td>화면 추가</td>
+                                    <td>완료</td>
+                                </tr>
+                                <tr class="comp">
+                                    <td>우리동이야기</td>
+                                    <td>일반현황</td>
+                                    <td>화면 추가</td>
+                                    <td>완료</td>
+                                </tr>
+                                <tr class="comp">
+                                    <td>우리동이야기</td>
+                                    <td>찾아오시는길</td>
+                                    <td>화면 추가</td>
+                                    <td>완료</td>
+                                </tr>
+                                <tr class="comp">
+                                    <td>우리동이야기</td>
+                                    <td>동유래</td>
+                                    <td>화면 추가</td>
+                                    <td>완료</td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr class="comp">
+                                    <td>우리동소식</td>
+                                    <td>우리동소식</td>
+                                    <td>화면 추가</td>
+                                    <td>완료</td>
+                                </tr>
+                                <tr>
+                                    <td>우리동소식</td>
+                                    <td>우리동소식</td>
+                                    <td>목록, 조회 DB 연동</td>
+                                    <td></td>
+                                </tr>
+                                <tr class="comp">
+                                    <td>우리동소식</td>
+                                    <td>구청소식</td>
+                                    <td>화면 추가</td>
+                                    <td>완료</td>
+                                </tr>
+                                <tr>
+                                    <td>우리동소식</td>
+                                    <td>구청소식</td>
+                                    <td>목록, 조회 DB 연동</td>
+                                    <td></td>
+                                </tr>
+                                <tr class="comp">
+                                    <td>우리동소식</td>
+                                    <td>포토갤러리</td>
+                                    <td>화면 추가</td>
+                                    <td>완료</td>
+                                </tr>
+                                <tr>
+                                    <td>우리동소식</td>
+                                    <td>포토갤러리</td>
+                                    <td>목록, 조회 DB 연동</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr class="comp">
+                                    <td>주민제안</td>
+                                    <td>주민제안 안내</td>
+                                    <td>화면 추가</td>
+                                    <td>완료</td>
+                                </tr>
+                                <tr class="comp">
+                                    <td>주민제안</td>
+                                    <td>주민제안</td>
+                                    <td>화면 추가</td>
+                                    <td>완료</td>
+                                </tr>
+                                <tr>
+                                    <td>주민제안</td>
+                                    <td>주민제안</td>
+                                    <td>목록, 조회, 등록, 수정, 삭제 DB 연동</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr class="comp">
+                                    <td>자치회관</td>
+                                    <td>자치화관이란?</td>
+                                    <td>화면 추가</td>
+                                    <td>완료</td>
+                                </tr>
+                                <tr class="comp">
+                                    <td>자치회관</td>
+                                    <td>자치회관 게시판</td>
+                                    <td>화면 추가</td>
+                                    <td>완료</td>
+                                </tr>
+                                <tr>
+                                    <td>자치회관</td>
+                                    <td>자치회관 게시판</td>
+                                    <td>목록, 조회 DB 연동</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>자치회관</td>
+                                    <td>주민자치의원</td>
+                                    <td>화면 추가</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>자치회관</td>
+                                    <td>프로그램 현황</td>
+                                    <td>화면 추가</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>자치회관</td>
+                                    <td>프로그램 현황</td>
+                                    <td>목록, 조회 DB 연동</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-write" data-modal="close">확인</button>
+                    </div>
+                    <button type="button" class="modal-close" data-modal="close"><span>모달창 닫기</span></button>
+                </div>
+            </div>
+
+            <div class="dim"></div>
+        </footer>
+    </div>
+</body>
+</html>

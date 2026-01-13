@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:replace="~{includes/layout::base(~{::title}, ~{::headEtc}, ~{::content})}">
+<head>
+    <meta charset="UTF-8">
+    <title th:fragment="title">영등포본동 주민센터</title>
+    <th:block th:fragment="headEtc">
+        <script>const MENU_ID = 'AA';</script>
+    </th:block>
+</head>
+<body>
+    <main th:fragment="content">
+        <!-- contents -->
+        <div id="contents" class="contents-main inner">
+            <section class="main-information">
+                <h3 class="blind">영등포본동 주민센터 메인 화면</h3>
+                <div class="main-banner">
+                    <div class="main-slider">
+                        <img src="./assets/images/main/main_banner_01.gif" alt="영등포본동 주민센터">
+                    </div>
+                </div>
+                <div class="center-info">
+                    <h4>영등포본동 주민센터 이용안내</h4>
+                    <span class="tel">02-2670-1049</span>
+                    <p>09:00 ~ 18:00(월~금)<br>(공휴일 제외)</p>
+                    <ul>
+                        <li>
+                            <a href="#" class="info-office text-over"><span>직원안내</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./dong/directions.html" class="info-location text-over"><span>찾아오시는길</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="main-quickbar">
+                <h3 class="blind">퀵메뉴 이동</h3>
+                <ul class="quick-menu">
+                    <li>
+                        <a href="#" class="quick01 text-over"><span>대형폐기물</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="quick02 text-over"><span>채용정보</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="quick03 text-over"><span>정부24</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="quick04 text-over"><span>영등포소식지</span></a>
+                    </li>
+                </ul>
+            </section>
+            <section class="main-board">
+                <div class="main-news">
+                    <h3 class="blind">주요 소식</h3>
+                    <ul class="news-list">
+                        <li>
+                            <input type="radio" name="main_news" id="news_dong" class="news-tab" checked>
+                            <label for="news_dong">우리동 소식</label>
+                            <div class="news-cont">
+                                <ul>
+                                    <li>
+                                        <a href="#" class="text-over"><span>2026년 상반기 청년 일자리사업 참여자 모집 안내</span></a>
+                                        <b>2025-12-29</b>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-over"><span>서울청년센터 영등포, 운영시간 변경 안내</span></a>
+                                        <b>2025-12-26</b>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-over"><span>2026년 1월 1일 선유교 해맞이 관람인원 제한 안내</span></a>
+                                        <b>2025-12-26</b>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-over"><span>겨울철 재난안전 집중신고제 운영 알림</span></a>
+                                        <b>2025-12-17</b>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-over"><span>작은도서관 자원봉사자 모집 안내</span></a>
+                                        <b>2025-12-17</b>
+                                    </li>
+                                </ul>
+                                <a href="#" class="btn-more"><span class="blind">우리동 소식 더보기</span></a>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="radio" name="main_news" id="news_gu" class="news-tab">
+                            <label for="news_gu">우리구 소식</label>
+                            <div class="news-cont">
+                                <ul>
+                                    <li>
+                                        <a href="#" class="text-over"><span>「신길공원(2차구간) 노후시설 정비사업」 주민설명회 개최 안내</span></a>
+                                        <b>2025-12-30</b>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-over"><span>영등포구노동자종합지원센터 직원 공개채용 안내</span></a>
+                                        <b>2025-12-29</b>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-over"><span>2026 중장년 어르신 국가자격시험 응시료 지원사업 안내</span></a>
+                                        <b>2025-12-29</b>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-over"><span>초미세먼지 주의보 발령 알림(2025. 12. 29. 15:00)</span></a>
+                                        <b>2025-12-29</b>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-over"><span>2026년 상반기 청년 일자리사업(드림나래, 평일야간 및 주말) 참여자 모집</span></a>
+                                        <b>2025-12-29</b>
+                                    </li>
+                                </ul>
+                                <a href="#" class="btn-more"><span class="blind">우리구 소식 더보기</span></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="main-gallery">
+                    <h3 class="main-title">우리동 갤러리</h3>
+                    <ul class="gallery-list">
+                        <li>
+                            <a href="#">
+                                <span class="img"><img src="./assets/files/gallery_thumb_01.jpg" alt="(12/26) 통장연합회 12월 정례회의"></span>
+                                <b>(12/26) 통장연합회 12월 정례회의</b>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="img"><img src="./assets/files/gallery_thumb_02.jpg" alt="(12/16) 12월 통장연합회 임시회의 개최"></span>
+                                <b>(12/16) 12월 통장연합회 임시회의 개최</b>
+                            </a>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn-more"><span class="blind">우리동 갤러리 더보기</span></a>
+                </div>
+            </section>
+            <section class="main-program">
+                <h3 class="main-title">자치회관 프로그램</h3>
+                <div class="program-list">
+                    <table class="table-main">
+                        <colgroup>
+                            <col class="col1" />
+                            <col class="col2" />
+                            <col class="col3" />
+                            <col class="col4" />
+                            <col class="col5" />
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th scope="col">프로그램명</th>
+                            <th scope="col">접수기간</th>
+                            <th scope="col">교육기간</th>
+                            <th scope="col">모집정원</th>
+                            <th scope="col">상태</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="subject">
+                                <a href="#" class="text-over"><span>스마트폰활용</span></a>
+                            </td>
+                            <td>12.23~12.31</td>
+                            <td>01.01 ~ 03.31</td>
+                            <td>16</td>
+                            <td>
+                                <span class="state edu">교육중</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="subject">
+                                <a href="#" class="text-over"><span>웰빙댄스</span></a>
+                            </td>
+                            <td>12.24 ~ 12.30</td>
+                            <td>01.01 ~ 03.31</td>
+                            <td>30</td>
+                            <td>
+                                <span class="state edu">교육중</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="subject">
+                                <a href="#" class="text-over"><span>인터넷교실(초급)</span></a>
+                            </td>
+                            <td>12.23 ~ 12.30</td>
+                            <td>01.01 ~ 03.31</td>
+                            <td>16</td>
+                            <td>
+                                <span class="state edu">교육중</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="subject">
+                                <a href="#" class="text-over"><span>인터넷교실(중급)</span></a>
+                            </td>
+                            <td>12.23 ~ 12.30</td>
+                            <td>01.01 ~ 03.31</td>
+                            <td>16</td>
+                            <td>
+                                <span class="state edu">교육중</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="subject">
+                                <a href="#" class="text-over"><span>라인댄스</span></a>
+                            </td>
+                            <td>12.24 ~ 12.30</td>
+                            <td>01.01 ~ 03.31</td>
+                            <td>30</td>
+                            <td>
+                                <span class="state edu">교육중</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="subject">
+                                <a href="#" class="text-over"><span>줌바댄스</span></a>
+                            </td>
+                            <td>12.23 ~ 12.30</td>
+                            <td>01.01 ~ 03.31	</td>
+                            <td>30</td>
+                            <td>
+                                <span class="state edu">교육중</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <a href="#" class="btn-more"><span class="blind">프로그램 더보기</span></a>
+            </section>
+        </div>
+        <!-- //contents -->
+    </main>
+</body>
+</html>
