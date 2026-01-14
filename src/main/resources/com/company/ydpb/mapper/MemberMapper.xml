@@ -5,6 +5,16 @@
 
 <mapper namespace="com.company.ydpb.mapper.MemberMapper">
     <select id="getList" resultType="com.company.ydpb.domain.MemberVo">
-        select * from tbl_member order by mem_id desc
+        <![CDATA[
+        select *
+        from (
+            select /*+INDEX_DESC(tbl_member idx_member_reg_date) */
+                mem_id, mem_name, mem_birth, mem_gender, mem_password, mem_address, mem_address_detail, mem_tel, mem_mobile, mem_email, mem_news, mem_regdate,
+                ROW_NUMBER() over (order by mem_regdate desc) as rn
+            from tbl_member
+            where mem_id like '%%' or mem_name like '%%'
+        )
+        where rn > (1 - 1) * 10 and rn <= 1 * 10
+        ]]>
     </select>
 </mapper>
