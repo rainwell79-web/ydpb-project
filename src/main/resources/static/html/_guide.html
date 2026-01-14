@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영등포본동 주민센터</title>
+    <link rel="shortcut icon" href="../assets/images/favicon.ico">
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <script src="../assets/js/jquery-1.12.4.min.js"></script>
+    <script src="../assets/js/jquery-3.3.1.min.js"></script>
+    <script src="../assets/js/prefixfree.min.js"></script>
+    <script src="../assets/js/ui.js"></script>
+</head>
+<body>
+    <nav id="skipNav" class="skip-nav">
+        <a href="#gnb">주메뉴 바로가기</a>
+        <a href="#contents">본문 바로가기</a>
+    </nav>
+
+    <div id="wrap">
+        <!-- header -->
+        <header class="header"></header>
+        <!-- //header -->
+
+        <!-- container -->
+        <div class="container">
+            <!-- location -->
+            <div class="location"></div>
+            <!-- location -->
+            
+            <!-- main -->
+            <main>
+                <!-- contents -->
+                <div id="contents" class="inner">
+
+                    <section>
+                        <h3 class="title">영역 제목</h3>
+                    </section>
+
+                    <section style="margin-top: 50px">
+                        <h3 class="title">Button</h3>
+                        <div>
+                            <button type="button" class="btn btn-default">btn btn-default</button>
+                            <span>기본 버튼</span>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-primary">btn btn-primary</button>
+                            <span>포인트컬러 버튼</span>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-write">btn btn-write</button>
+                            <span>글쓰기 버튼</span>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-cancel">btn btn-cancel</button>
+                            <span>취소 버튼</span>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-sm">btn btn-sm</button>
+                            <span>작은 버튼</span>
+                        </div>
+                    </section>
+
+                    <section style="margin-top: 50px">
+                        <h3 class="title">Input</h3>
+                        <div>
+                            <input type="text" class="input" placeholder="input">
+                        </div>
+                        <div>
+                            <input type="text" class="input" placeholder="input readonly" readonly>
+                        </div>
+                        <div>
+                            <input type="text" class="input" placeholder="input disabled" disabled>
+                        </div>
+                        <div>
+                            <input type="text" class="input input-form" placeholder="input input-form">
+                        </div>
+                    </section>
+
+                    <section style="margin-top: 50px">
+                        <h3 class="title">Checkbox</h3>
+                        <div class="checkbox">
+                            <input type="checkbox" id="chk_1">
+                            <label for="chk_1">체크박스</label>
+                        </div>
+                        <p style="margin-top: 16px; color: red">- 체크박스/라디오는 부모 div 부터 input, label 구조 유지할 것</p>
+                    </section>
+
+                    <section style="margin-top: 50px">
+                        <h3 class="title">Radio</h3>
+                        <div class="radio">
+                            <input type="radio" name="rdo" id="rdo_1" checked>
+                            <label for="rdo_1">라디오 1</label>
+                        </div>
+                        <div class="radio">
+                            <input type="radio" name="rdo" id="rdo_2">
+                            <label for="rdo_2">라디오 2</label>
+                        </div>
+                    </section>
+
+                    <section style="margin-top: 50px">
+                        <h3 class="title">Table</h3>
+                        <span>table table-basic</span>
+                        <table class="table table-basic">
+                            <caption>테이블 기본</caption>
+                            <thead>
+                                <tr>
+                                    <th>컬럼1</th>
+                                    <th>컬럼2</th>
+                                    <th>컬럼3</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>내용1</td>
+                                    <td>내용2</td>
+                                    <td>내용3</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <span>table table-emp</span>
+                        <table class="table table-emp">
+                            <caption>테이블 강조</caption>
+                            <thead>
+                                <tr>
+                                    <th>컬럼1</th>
+                                    <th>컬럼2</th>
+                                    <th>컬럼3</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>내용1</td>
+                                    <td>내용2</td>
+                                    <td>내용3</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <span>table table-board</span>
+                        <table class="table table-board">
+                            <caption>테이블 게시판</caption>
+                            <thead>
+                                <tr>
+                                    <th>컬럼1</th>
+                                    <th>컬럼2</th>
+                                    <th>컬럼3</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>내용1</td>
+                                    <td class="td-title">제목</td>
+                                    <td>내용3</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <span>table table-form</span>
+                        <table class="table table-form">
+                            <caption>테이블 입력</caption>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">컬럼1</th>
+                                    <td>내용1</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">컬럼2</th>
+                                    <td>내용2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section style="margin-top: 50px">
+                        <h3 class="title">List</h3>
+                        <span>list-explain</span>
+                        <ul class="list-explain">
+                            <li>설명1</li>
+                            <li>설명2</li>
+                        </ul>
+                    </section>
+
+                    <section style="margin-top: 50px">
+                        <h3 class="title">Text</h3>
+                        <span class="text-emp emp01">text-emp emp01</span><br>
+                        <span class="text-emp emp02">text-emp emp02</span><br>
+                        <span class="text-emp emp03">text-emp emp03</span>
+                        <p class="text-explain">text-explain</p>
+                    </section>
+
+                    <section style="margin-top: 50px">
+                        <h3 class="title">각 페이지 가이드라인 참조</h3>
+                        <a href="https://www.figma.com/design/ZKXwO8I7ha2qV8aufC1OJH/%EC%98%81%EB%93%B1%ED%8F%AC%EB%B3%B8%EB%8F%99-%EC%A3%BC%EB%AF%BC%EC%84%BC%ED%84%B0?node-id=0-1&p=f&t=tIoc3Wlsv8KsgWoJ-0" target="_blank" style="text-decoration: underline;">피그마 링크로 이동</a>
+                        <p style="margin-top: 16px; color: red; line-height: 1.5">
+                            - 피그마 로그인 하면 가이드라인 확인 및 요소 사이 간격 확인 가능<br>
+                            - 피그마 본인 계정 프로젝트로 레이어 복사해서 수정 및 편집 가능
+                        </p>
+                    </section>
+
+                </div>
+                <!-- //contents -->
+            </main>
+            <!-- //main -->
+            
+            <!-- charge info -->
+            <div class="charge-info"></div>
+            <!-- //charge info -->
+        </div>
+        <!-- //container -->
+
+        <!-- footer -->
+        <footer class="footer"></footer>
+        <!-- //footer -->
+    </div>
+</body>
+</html>

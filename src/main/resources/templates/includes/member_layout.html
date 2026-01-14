@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:fragment="base(title, headEtc, content, menuName)">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:replace="${title}">Layout</title>
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/assets/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/common.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style_member.css}">
+    <script th:src="@{/assets/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/assets/js/prefixfree.min.js}"></script>
+    <script th:src="@{/assets/js/ui.js}"></script>
+    <th:block th:replace="${headEtc}"></th:block>
+</head>
+<body>
+    <nav id="skipNav" class="skip-nav">
+        <a href="#gnb">주메뉴 바로가기</a>
+        <a href="#contents">본문 바로가기</a>
+    </nav>
+
+    <div id="wrap" class="member-wrap">
+        <!-- member header -->
+        <header class="member-header">
+            <div class="header-inner">
+                <h1>
+                    <a href="../"><span class="blind">영등포본동</span></a><b>통합로그인</b>
+                </h1>
+                <p>영등포본동 주민센터 홈페이지를 방문해주신 여러분 환영합니다</p>
+            </div>
+        </header>
+        <!-- //member header -->
+
+        <!-- main -->
+        <main th:replace="${content}"></main>
+        <!-- //main -->
+
+        <!-- member footer -->
+        <footer class="member-footer">
+            <div class="inner">
+                <address>
+                    <p>[07260] 서울 영등포구 당산로 123(당산동3가)</p>
+                    <p>
+                        <b>전화</b> <span>02-2670-3000(야간, 공휴일/당직실)</span>
+                        <b>팩스</b> <span>02-2670-3002</span>
+                    </p>
+                </address>
+                <p class="copyright">Copyright(C) YEONGDEUNGPO-GU. ALL RIGHTS RESERVED.</p>
+            </div>
+        </footer>
+        <!-- //footer -->
+    </div>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>통합 로그인 - 로그인</title>
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico">
+    <link rel="stylesheet" href="../../assets/css/reset.css">
+    <link rel="stylesheet" href="../../assets/css/common.css">
+    <link rel="stylesheet" href="../../assets/css/style_member.css">
+    <script src="../../assets/js/jquery-3.3.1.min.js"></script>
+    <script src="../../assets/js/prefixfree.min.js"></script>
+    <script src="../../assets/js/ui.js"></script>
+    <script src="../../assets/js/ui_member.js"></script>
+</head>
+<body>
+    <div id="wrap" class="member-wrap">
+        <!-- member header -->
+        <header class="member-header">
+            <div class="header-inner">
+                <h1>
+                    <a href="../.."><span class="blind">영등포구</span></a><b>통합로그인</b>
+                </h1>
+                <p>영등포구청 홈페이지를 방문해주신 여러분 환영합니다</p>
+            </div>
+        </header>
+        <!-- //member header -->
+
+        <!-- member container -->
+        <div class="member-container">
+            <div class="membership">
+                <div class="member-inner">
+                    <!-- member menu -->
+                    <ul class="member-menu">
+                        <li>
+                            <a href="login.html">통합로그인</a>
+                        </li>
+                        <li class="active">
+                            <span>회원가입</span>
+                        </li>
+                        <li>
+                            <a href="#">약관재동의</a>
+                        </li>
+                    </ul>
+                    <!-- //member menu -->
+
+                    <!-- contents member -->
+                    <div class="contents-member contents-join">
+                        <ol class="join-flow">
+                            <li>
+                                <b>STEP01</b>
+                                <span>회원구분</span>
+                            </li>
+                            <li>
+                                <b>STEP02</b>
+                                <span>약관동의 및 본인인증</span>
+                            </li>
+                            <li class="active">
+                                <b>STEP03</b>
+                                <span>회원정보입력</span>
+                            </li>
+                            <li>
+                                <b>STEP04</b>
+                                <span>가입완료</span>
+                            </li>
+                        </ol>
+                        <form action="#" method="post" class="join-form">
+                            <table class="table table-form">
+                                <colgroup>
+                                    <col class="col1">
+                                    <col class="col2">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <label for="memId">사용자ID</label>
+                                            <span class="required-mark">필수</span>
+                                        </th>
+                                        <td>
+                                            <input type="text" name="memId" id="memId" class="input input-auto" maxlength="40" size="40">
+                                            <button type="button" class="btn btn-write btn-sm" onclick="layerAlert('죄송합니다.<br> 현재 준비중인 메뉴입니다.')">중복확인</button>
+                                            <p>※ ID의 첫 자는 소문자 알파벳으로 시작해야 하며 5자리 이상, 40자리 이하로 입력하셔야 합니다.</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <label for="memName">사용자 이름</label>
+                                            <span class="required-mark">필수</span>
+                                        </th>
+                                        <td>
+                                            <input type="text" name="memName" id="memName" class="input input-auto" maxlength="30" size="40">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <label for="memBirth">사용자 생년월일</label>
+                                            <span class="required-mark">필수</span>
+                                        </th>
+                                        <td>
+                                            <input type="date" name="memBirth" id="memBirth" class="input input-auto">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">사용자 성별</th>
+                                        <td>
+                                            <div class="radio">
+                                                <input type="radio" name="memGender" id="memGender_M" value="남자">
+                                                <label for="memGender_M">남자</label>
+                                            </div>
+                                            <div class="radio">
+                                                <input type="radio" name="memGender" id="memGender_F" value="여자">
+                                                <label for="memGender_F">여자</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <label for="memPassword">비밀번호</label>
+                                            <span class="required-mark">필수</span>
+                                        </th>
+                                        <td>
+                                            <input type="password" name="memPassword" id="memPassword" class="input input-auto" maxlength="20" size="40">
+                                            <p>※ 비밀번호는 숫자와 영문, 특수문자(!@#$%^&*+=-) 조합으로 9~20자리를 사용해야 합니다.</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <label for="memPasswordRe">비밀번호확인</label>
+                                            <span class="required-mark">필수</span>
+                                        </th>
+                                        <td>
+                                            <input type="password" name="memPasswordRe" id="memPasswordRe" class="input input-auto" maxlength="20" size="40">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            주소
+                                            <span class="required-mark">필수</span>
+                                        </th>
+                                        <td>
+                                            <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+                                            <button type="button" class="btn btn-cancel btn-sm" onclick="execDaumPostcode()">주소찾기</button>
+                                            <span class="text-emp emp03">우편번호 검색창이 새창으로 열립니다.</span>
+                                            <input type="text" name="memAddress1" id="memAddress1" class="input" maxlength="300" placeholder="주소" readonly>
+                                            <input type="text" name="memAddress2" id="memAddress2" class="input" maxlength="300" placeholder="상세주소">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">일반전화</th>
+                                        <td>
+                                            <input type="text" name="memTel1" id="memTel1" class="input input-auto" maxlength="3" size="3">-
+                                            <input type="text" name="memTel2" id="memTel2" class="input input-auto" maxlength="4" size="4">-
+                                            <input type="text" name="memTel3" id="memTel3" class="input input-auto" maxlength="4" size="4">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            휴대폰
+                                            <span class="required-mark">필수</span>
+                                        </th>
+                                        <td>
+                                            <input type="text" name="memMobile1" id="memMobile1" class="input input-auto" maxlength="3" size="3">-
+                                            <input type="text" name="memMobile2" id="memMobile2" class="input input-auto" maxlength="4" size="4">-
+                                            <input type="text" name="memMobile3" id="memMobile3" class="input input-auto" maxlength="4" size="4">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            이메일
+                                            <span class="required-mark">필수</span>
+                                        </th>
+                                        <td>
+                                            <input type="text" name="memEmail1" id="memEmail1" class="input input-auto">
+                                            @
+                                            <input type="text" name="memEmail2" id="memEmail2" class="input input-auto">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">영등포구소식</th>
+                                        <td>
+                                            <div class="radio">
+                                                <input type="radio" name="memNews" id="memNews_Y" value="Y" checked>
+                                                <label for="memNews_Y">받음</label>
+                                            </div>
+                                            <div class="radio">
+                                                <input type="radio" name="memNews" id="memNews_N" value="N">
+                                                <label for="memNews_N">받지않음</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="btns">
+                                <input type="submit" class="btn btn-write" value="회원가입">
+                            </div>
+                        </form>
+                    </div>
+                    <!-- //contents member -->
+                </div>
+            </div>
+        </div>
+        <!-- //member container -->
+    </div>
+</body>
+</html>

@@ -1,41 +1,44 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:replace="~{includes/layout::base(~{::title}, ~{::headEtc}, ~{::location}, ~{::content})}">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <!-- 현재 페이지의 타이틀 입력 -->
-    <title th:fragment="title">영등포본동 주민센터</title>
-
-    <!-- 현재 페이지에만 사용하는 추가 head 정보 | css, js 등 -->
-    <th:block th:fragment="headEtc">
-        <script>const MENU_ID = 'AA';</script>
-    </th:block>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영등포본동 주민센터</title>
+    <link rel="shortcut icon" href="../assets/images/favicon.ico">
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/style_page.css">
+    <script src="../assets/js/jquery-3.3.1.min.js"></script>
+    <script src="../assets/js/prefixfree.min.js"></script>
+    <script src="../assets/js/ui.js"></script>
 </head>
 <body>
+    <nav id="skipNav" class="skip-nav">
+        <a href="#gnb">주메뉴 바로가기</a>
+        <a href="#contents">본문 바로가기</a>
+    </nav>
 
+    <div id="wrap">
+        <!-- header -->
+        <header class="header"></header>
+        <!-- //header -->
 
-    <!-- 현재 페이지 로케이션 정보 | 2depth - 3depth 만 표시 | 1depth 는 layout 페이지에 고정 -->
-    <!-- location fragment -->
-    <th:block th:fragment="location">
-                        <div class="location-text">
-                            <a href="/">우리동이야기</a>
-                        </div>
-                        <div class="location-next">></div>
-                        <div class="location-text last">
-                            <a href="/">영등포본동 주민센터</a>
-                        </div>
-    </th:block>
-    <!-- //location fragment -->
+        <!-- container -->
+        <div class="container">
+            <!-- location -->
+            <div class="location"></div>
+            <!-- //location -->
 
-            <!-- 현재 페이지 내용 | main 태그 내부 -->
             <!-- main -->
-            <main th:fragment="content">
+            <main>
                 <!-- contents -->
                 <div id="contents" class="contents-main inner">
                     <section class="main-information">
                         <h3 class="blind">영등포본동 주민센터 메인 화면</h3>
                         <div class="main-banner">
                             <div class="main-slider">
-                                <img src="/assets/images/main/main_banner_01.gif" alt="영등포본동 주민센터">
+                                <img src="../assets/images/main/main_banner_01.gif" alt="영등포본동 주민센터">
                             </div>
                         </div>
                         <div class="center-info">
@@ -48,7 +51,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="./dong/directions.html" class="info-location text-over"><span>찾아오시는길</span>
+                                    <a href="dongirections.html" class="info-location text-over"><span>찾아오시는길</span>
                                     </a>
                                 </li>
                             </ul>
@@ -140,13 +143,13 @@
                             <ul class="gallery-list">
                                 <li>
                                     <a href="#">
-                                        <span class="img"><img src="/assets/files/gallery_thumb_01.jpg" alt="(12/26) 통장연합회 12월 정례회의"></span>
+                                        <span class="img"><img src="../assets/files/gallery_thumb_01.jpg" alt="(12/26) 통장연합회 12월 정례회의"></span>
                                         <b>(12/26) 통장연합회 12월 정례회의</b>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span class="img"><img src="/assets/files/gallery_thumb_02.jpg" alt="(12/16) 12월 통장연합회 임시회의 개최"></span>
+                                        <span class="img"><img src="../assets/files/gallery_thumb_02.jpg" alt="(12/16) 12월 통장연합회 임시회의 개최"></span>
                                         <b>(12/16) 12월 통장연합회 임시회의 개최</b>
                                     </a>
                                 </li>
@@ -166,81 +169,81 @@
                                     <col class="col5" />
                                 </colgroup>
                                 <thead>
-                                <tr>
-                                    <th scope="col">프로그램명</th>
-                                    <th scope="col">접수기간</th>
-                                    <th scope="col">교육기간</th>
-                                    <th scope="col">모집정원</th>
-                                    <th scope="col">상태</th>
-                                </tr>
+                                    <tr>
+                                        <th scope="col">프로그램명</th>
+                                        <th scope="col">접수기간</th>
+                                        <th scope="col">교육기간</th>
+                                        <th scope="col">모집정원</th>
+                                        <th scope="col">상태</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td class="subject">
-                                        <a href="#" class="text-over"><span>스마트폰활용</span></a>
-                                    </td>
-                                    <td>12.23~12.31</td>
-                                    <td>01.01 ~ 03.31</td>
-                                    <td>16</td>
-                                    <td>
-                                        <span class="state edu">교육중</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="subject">
-                                        <a href="#" class="text-over"><span>웰빙댄스</span></a>
-                                    </td>
-                                    <td>12.24 ~ 12.30</td>
-                                    <td>01.01 ~ 03.31</td>
-                                    <td>30</td>
-                                    <td>
-                                        <span class="state edu">교육중</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="subject">
-                                        <a href="#" class="text-over"><span>인터넷교실(초급)</span></a>
-                                    </td>
-                                    <td>12.23 ~ 12.30</td>
-                                    <td>01.01 ~ 03.31</td>
-                                    <td>16</td>
-                                    <td>
-                                        <span class="state edu">교육중</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="subject">
-                                        <a href="#" class="text-over"><span>인터넷교실(중급)</span></a>
-                                    </td>
-                                    <td>12.23 ~ 12.30</td>
-                                    <td>01.01 ~ 03.31</td>
-                                    <td>16</td>
-                                    <td>
-                                        <span class="state edu">교육중</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="subject">
-                                        <a href="#" class="text-over"><span>라인댄스</span></a>
-                                    </td>
-                                    <td>12.24 ~ 12.30</td>
-                                    <td>01.01 ~ 03.31</td>
-                                    <td>30</td>
-                                    <td>
-                                        <span class="state edu">교육중</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="subject">
-                                        <a href="#" class="text-over"><span>줌바댄스</span></a>
-                                    </td>
-                                    <td>12.23 ~ 12.30</td>
-                                    <td>01.01 ~ 03.31	</td>
-                                    <td>30</td>
-                                    <td>
-                                        <span class="state edu">교육중</span>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td class="subject">
+                                            <a href="#" class="text-over"><span>스마트폰활용</span></a>
+                                        </td>
+                                        <td>12.23~12.31</td>
+                                        <td>01.01 ~ 03.31</td>
+                                        <td>16</td>
+                                        <td>
+                                            <span class="state edu">교육중</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="subject">
+                                            <a href="#" class="text-over"><span>웰빙댄스</span></a>
+                                        </td>
+                                        <td>12.24 ~ 12.30</td>
+                                        <td>01.01 ~ 03.31</td>
+                                        <td>30</td>
+                                        <td>
+                                            <span class="state edu">교육중</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="subject">
+                                            <a href="#" class="text-over"><span>인터넷교실(초급)</span></a>
+                                        </td>
+                                        <td>12.23 ~ 12.30</td>
+                                        <td>01.01 ~ 03.31</td>
+                                        <td>16</td>
+                                        <td>
+                                            <span class="state edu">교육중</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="subject">
+                                            <a href="#" class="text-over"><span>인터넷교실(중급)</span></a>
+                                        </td>
+                                        <td>12.23 ~ 12.30</td>
+                                        <td>01.01 ~ 03.31</td>
+                                        <td>16</td>
+                                        <td>
+                                            <span class="state edu">교육중</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="subject">
+                                            <a href="#" class="text-over"><span>라인댄스</span></a>
+                                        </td>
+                                        <td>12.24 ~ 12.30</td>
+                                        <td>01.01 ~ 03.31</td>
+                                        <td>30</td>
+                                        <td>
+                                            <span class="state edu">교육중</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="subject">
+                                            <a href="#" class="text-over"><span>줌바댄스</span></a>
+                                        </td>
+                                        <td>12.23 ~ 12.30</td>
+                                        <td>01.01 ~ 03.31	</td>
+                                        <td>30</td>
+                                        <td>
+                                            <span class="state edu">교육중</span>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -250,5 +253,27 @@
                 <!-- //contents -->
             </main>
             <!-- //main -->
+                    
+            <!-- charge info -->
+            <div class="charge-info">
+                <ul>
+                    <li>
+                        <span class="info-name">담당부서</span>
+                        <span>영등포본동</span>
+                    </li>
+                    <li>
+                        <span class="info-name">담당전화번호</span>
+                        <span>02-2670-1026</span>
+                    </li>
+                </ul>
+            </div>
+            <!-- //charge info -->
+        </div>
+        <!-- //container -->
+
+        <!-- footer -->
+        <footer class="footer"></footer>
+        <!-- //footer -->
+    </div>
 </body>
 </html>

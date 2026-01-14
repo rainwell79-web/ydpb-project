@@ -35,3 +35,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### 설정 ###
+.properties
+
+### 정적페이지 ###
+!**/src/main/resources/static/html/

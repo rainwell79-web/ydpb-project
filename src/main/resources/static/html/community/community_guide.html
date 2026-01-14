@@ -1,36 +1,40 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:replace="~{includes/layout::base(~{::title}, ~{::headEtc}, ~{::location}, ~{::content})}">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <!-- 현재 페이지의 타이틀 입력 -->
-    <title th:fragment="title">자치회관이란? | 자치회관 | 영등포본동 주민센터</title>
-
-    <!-- 현재 페이지에만 사용하는 추가 head 정보 | css, js 등 -->
-    <th:block th:fragment="headEtc">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자치회관이란? | 자치회관 | 영등포본동 주민센터</title>
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico">
+    <link rel="stylesheet" href="../../assets/css/reset.css">
+    <link rel="stylesheet" href="../../assets/css/common.css">
+    <link rel="stylesheet" href="../../assets/css/style_page.css">
+    <script src="../../assets/js/jquery-3.3.1.min.js"></script>
+    <script src="../../assets/js/prefixfree.min.js"></script>
     <script>const MENU_ID = 'DA';</script>
-    </th:block>
-
+    <script src="../../assets/js/ui.js"></script>
 </head>
 <body>
+    <nav id="skipNav" class="skip-nav">
+        <a href="#gnb">주메뉴 바로가기</a>
+        <a href="#contents">본문 바로가기</a>
+    </nav>
 
-    <!-- 현재 페이지 로케이션 정보 | 2depth - 3depth 만 표시 | 1depth 는 layout 페이지에 고정 -->
-    <!-- location fragment -->
-    <th:block th:fragment="location">
-                        <div class="location-text">
-                            <a th:href="@{/community/guide}">자치회관</a>
-                        </div>
-                        <div class="location-next">></div>
-                        <div class="location-text last">
-                            <a th:href="@{/community/guide}">자치회관이란?</a>
-                        </div>
-    </th:block>
-    <!-- //location fragment -->
+    <div id="wrap">
+        <!-- header -->
+        <header class="header"></header>
+        <!-- //header -->
 
-    <!-- 현재 페이지 내용 | main 태그 내부 -->
-    <!-- main -->
-            <main th:fragment="content">
+        <!-- container -->
+        <div class="container">
+            <!-- location -->
+            <div class="location"></div>
+            <!-- //location -->
+
+            <!-- main -->
+            <main>
                 <!-- contents -->
-                <div id="contents" class="contents-community-guide inner">
+                <div id="contnets" class="contents-community-guide inner">
                     <div class="box-explain citizen">
                         <div class="cont">
                             <strong>자치회관이란?</strong>
@@ -59,7 +63,17 @@
                 </div>
                 <!-- //contents -->
             </main>
-    <!-- //main -->
+            <!-- //main -->
+                    
+            <!-- charge info -->
+            <div class="charge-info"></div>
+            <!-- //charge info -->
+        </div>
+        <!-- //container -->
 
+        <!-- footer -->
+        <footer class="footer"></footer>
+        <!-- //footer -->
+    </div>
 </body>
 </html>

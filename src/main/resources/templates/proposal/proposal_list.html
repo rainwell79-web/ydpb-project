@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:replace="~{includes/layout::base(~{::title}, ~{::headEtc}, ~{::location}, ~{::content})}">
+<head>
+    <meta charset="UTF-8">
+    <!-- 현재 페이지의 타이틀 입력 -->
+    <title th:fragment="title">주민제안 | 주민제안 | 영등포본동 주민센터</title>
+
+    <!-- 현재 페이지에만 사용하는 추가 head 정보 | css, js 등 -->
+    <th:block th:fragment="headEtc">
+    <script>const MENU_ID = 'CB';</script>
+    </th:block>
+
+</head>
+<body>
+
+    <!-- 현재 페이지 로케이션 정보 | 2depth - 3depth 만 표시 | 1depth 는 layout 페이지에 고정 -->
+    <!-- location fragment -->
+    <th:block th:fragment="location">
+                        <div class="location-text">
+                            <a th:href="@{/proposal/guide}">주민제안</a>
+                        </div>
+                        <div class="location-next">></div>
+                        <div class="location-text last">
+                            <a th:href="@{/proposal/board}">주민제안</a>
+                        </div>
+    </th:block>
+    <!-- //location fragment -->
+
+    <!-- 현재 페이지 내용 | main 태그 내부 -->
+    <!-- main -->
+            <main th:fragment="content">
+                <!-- contents -->
+                <div id="contents" class="contents-board-list proposal-list inner">
+                    <div class="board-search">
+                        <form action="#">
+                            <fieldset>
+                                <legend class="blind">게시물검색</legend>
+                                <div class="search-group">
+                                    <label for="searchType" class="blind">검색항목 선택</label>
+                                    <select name="searchType" id="searchType" title="검색항목선택" class="input">
+                                        <option value="title" selected="selected">제안제목</option>
+                                    </select>
+                                    <label for="searchKeyword" class="blind">검색어 입력</label>
+                                    <input type="text" name="searchKeyword" id="searchKeyword" class="input input-form">
+                                    <input value="검색" type="submit" class="btn btn-list-search">
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+
+                    <div class="list-count">
+                        <span>총 <em>23</em> 개</span>
+                        <span>[ <b>1</b> / 3 페이지]</span>
+                    </div>
+                    <table class="table table-board">
+                        <colgroup>
+                            <col class="col1">
+                            <col class="col2">
+                            <col class="col3">
+                            <col class="col4">
+                            <col class="col5">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th scope="col">번호</th>
+                            <th scope="col">제안제목</th>
+                            <th scope="col">제안일</th>
+                            <th scope="col">공개여부</th>
+                            <th scope="col">처리상황</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>23</td>
+                            <td class="td-title">
+                                <a href="proposal_view.html">지하철역 미화개선</a>
+                            </td>
+                            <td>
+                                <time datetime="2025-12-12">2025.12.12</time>
+                            </td>
+                            <td>Y</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>22</td>
+                            <td class="td-title">
+                                <a href="proposal_view.html" onclick="alert('권한이 없습니다.'); return false">지하철역 미화개선</a>
+                            </td>
+                            <td>
+                                <time datetime="2025-12-12">2025.12.12</time>
+                            </td>
+                            <td>N</td>
+                            <td>진행중</td>
+                        </tr>
+                        <tr>
+                            <td>21</td>
+                            <td class="td-title">
+                                <a href="proposal_view.html">지하철역 미화개선</a>
+                            </td>
+                            <td>
+                                <time datetime="2025-12-12">2025.12.12</time>
+                            </td>
+                            <td>Y</td>
+                            <td>완료</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="pagination">
+                        <div class="page-control">
+                            <a href="#" class="page-link first" title="처음 페이지로 이동"><span class="blind">처음 페이지</span></a>
+                            <a href="#" class="page-link prev" title="이전 10페이지로 이동"><span class="blind">이전 10페이지</span></a>
+                        </div>
+                        <div class="page-group">
+                            <strong class="page-active">1</strong>
+                            <a href="#" class="page-link" title="2 페이지로 이동">2</a>
+                            <a href="#" class="page-link" title="3 페이지로 이동">3</a>
+                        </div>
+                        <div class="page-control">
+                            <a href="#" class="page-link next" title="다음 10페이지로 이동"><span class="blind">다음 10페이지</span></a>
+                            <a href="#" class="page-link last" title="마지막 페이지로 이동"><span class="blind">마지막 페이지</span></a>
+                        </div>
+                    </div>
+
+                    <div class="board-btns">
+                        <a href="proposal_create.html" class="btn btn-write">글쓰기</a>
+                    </div>
+                </div>
+                <!-- //contents -->
+            </main>
+    <!-- //main -->
+
+</body>
+</html>

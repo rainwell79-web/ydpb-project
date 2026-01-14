@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:replace="~{includes/layout::base(~{::title}, ~{::headEtc}, ~{::location}, ~{::content})}">
+<head>
+    <meta charset="UTF-8">
+    <!-- 현재 페이지의 타이틀 입력 -->
+    <title th:fragment="title">주민제안 | 주민제안 | 영등포본동 주민센터</title>
+
+    <!-- 현재 페이지에만 사용하는 추가 head 정보 | css, js 등 -->
+    <th:block th:fragment="headEtc">
+    <script>const MENU_ID = 'CB';</script>
+    </th:block>
+
+</head>
+<body>
+
+    <!-- 현재 페이지 로케이션 정보 | 2depth - 3depth 만 표시 | 1depth 는 layout 페이지에 고정 -->
+    <!-- location fragment -->
+    <th:block th:fragment="location">
+                        <div class="location-text">
+                            <a th:href="@{/proposal/guide}">주민제안</a>
+                        </div>
+                        <div class="location-next">></div>
+                        <div class="location-text last">
+                            <a th:href="@{/proposal/board}">주민제안</a>
+                        </div>
+    </th:block>
+    <!-- //location fragment -->
+
+    <!-- 현재 페이지 내용 | main 태그 내부 -->
+    <!-- main -->
+            <main th:fragment="content">
+                <!-- contents -->
+                <div id="contents" class="contents-board-write proposal-write inner">
+                    <p class="text-emp emp03"><span class="required-mark">필수항목</span> 표시는 필수 항목 입니다.</p>
+                    <form action="#" method="post">
+                        <table class="table table-form">
+                            <caption class="blind">주민제안 글수정</caption>
+                            <colgroup>
+                                <col class="col1">
+                                <col class="col2">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <label for="plTitle">제안제목</label>
+                                    <span class="required-mark">필수항목</span>
+                                </th>
+                                <td>
+                                    <input type="text" name="plTitle" id="plTitle" class="input form-input" value="지하철역 미화개선">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <label for="plProblem">현황 및 문제점</label>
+                                    <span class="required-mark">필수항목</span>
+                                </th>
+                                <td>
+                                        <textarea name="plProblem" id="plProblem" class="input" rows="10" placeholder="제안 내용과 관련된 행정제도·행정 운영 등의 현황과 문제점을 구체적으로 작성">구로디지탈단지역 계단이 미끄럽고 보기에 너무 안 좋습니다
+녹슨 계단 사진을 찍었는데 첨부가 안되네요
+원광디지털대학교-지밸리로 이어지는 인도 바로 옆에 도로라 우천, 폭설시 너무 위험합니다</textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <label for="plContent">개선방안</label>
+                                    <span class="required-mark">필수항목</span>
+                                </th>
+                                <td>
+                                    <textarea name="plContent" id="plContent" class="input" rows="10" placeholder="개선방안 및 예상 소요금액, 산출근거, 유사 사례 등을 포함하여 작성">봄이 오면 안전 보안 및 미화 개선 바랍니다</textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <label for="plEffect">기대효과</label>
+                                    <span class="required-mark">필수항목</span>
+                                </th>
+                                <td>
+                                    <textarea name="plEffect" id="plEffect" class="input" rows="10" placeholder="개선방안을 적용했을 때 예상되는 효과 작성">거주 주민의 안전과 행복 상승</textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">공개여부</th>
+                                <td>
+                                    <div class="radio">
+                                        <input type="radio" name="plPublic" id="plPublic_Y" value="Y" checked>
+                                        <label for="plPublic_Y">공개</label>
+                                    </div>
+                                    <div class="radio">
+                                        <input type="radio" name="plPublic" id="plPublic_N" value="N">
+                                        <label for="plPublic_N">비공개</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="board-write-btns">
+                            <a href="proposal_list.html" class="btn btn-default">목록</a>
+                            <input type="submit" class="btn btn-write" value="저장">
+                            <input type="reset" class="btn btn-cancel" value="다시쓰기">
+                        </div>
+                    </form>
+                </div>
+                <!-- //contents -->
+            </main>
+    <!-- //main -->
+
+</body>
+</html>

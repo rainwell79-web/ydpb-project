@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:replace="~{includes/layout::base(~{::title}, ~{::headEtc}, ~{::location}, ~{::content})}">
+<head>
+    <meta charset="UTF-8">
+    <!-- 현재 페이지의 타이틀 입력 -->
+    <title th:fragment="title">찾아오시는길 | 우리동이야기 | 영등포본동 주민센터</title>
+
+    <!-- 현재 페이지에만 사용하는 추가 head 정보 | css, js 등 -->
+    <th:block th:fragment="headEtc">
+    <script>const MENU_ID = 'AD';</script>
+    </th:block>
+
+</head>
+<body>
+
+    <!-- 현재 페이지 로케이션 정보 | 2depth - 3depth 만 표시 | 1depth 는 layout 페이지에 고정 -->
+    <!-- location fragment -->
+    <th:block th:fragment="location">
+                        <div class="location-text">
+                            <a th:href="@{/}">우리동이야기</a>
+                        </div>
+                        <div class="location-next">></div>
+                        <div class="location-text last">
+                            <a th:href="@{/dong/directions}">찾아오시는길</a>
+                        </div>
+    </th:block>
+    <!-- //location fragment -->
+
+    <!-- 현재 페이지 내용 | main 태그 내부 -->
+    <!-- main -->
+            <main th:fragment="content">
+                <!-- contents -->
+                <div id="contents" class="contents-directions inner">
+                    <section class="directions-section01">
+                        <h3 class="blind">영등포본동 주민센터 지도</h3>
+                        <div class="directions-map">
+                            <div id="daumRoughmapContainer1765775888659" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+                            <script class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+                            <script>
+                                new daum.roughmap.Lander({
+                                    "timestamp" : "1765775888659",
+                                    "key" : "ebztz6hmb7z",
+                                    "mapWidth" : "",
+                                    "mapHeight" : "500"
+                                }).render();
+                            </script>
+                        </div>
+                    </section>
+
+                    <section class="directions-section02">
+                        <h3 class="title">주소</h3>
+                        <div class="directions-info address">
+                            <ul class="list-explain">
+                                <li>서울특별시 영등포구 신길로61길 17 영등포본동 주민센터</li>
+                                <li>지번주소 : 영등포동 592-70</li>
+                            </ul>
+                        </div>
+                        <h3 class="title">지하철 이용시</h3>
+                        <div class="directions-info subway">
+                            <div>
+                                <p>1호선 영등포역 1번출구</p>
+                                <p class="text-emp emp01">교통약자를 위한 엘리베이터가 1호선 영등포역 1번 출구에 있습니다.</p>
+                            </div>
+                        </div>
+                        <h3 class="title">버스 이용시</h3>
+                        <div class="directions-info bus">
+                            <ul class="list-explain">
+                                <li>영등포공원앞 5620, 5616, 5713</li>
+                                <li>역후문 마을버스 06, 09</li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+                <!-- //contents -->
+            </main>
+    <!-- //main -->
+
+</body>
+</html>
