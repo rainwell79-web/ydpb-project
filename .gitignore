@@ -39,7 +39,6 @@ out/
 ### 설정 ###
 application.properties
 .gitignore
-*.sql
 
 ### 정적페이지 ###
 **/src/main/resources/static/html/
