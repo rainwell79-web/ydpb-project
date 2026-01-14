@@ -37,7 +37,8 @@ out/
 .vscode/
 
 ### 설정 ###
-.properties
+application.properties
+.gitignore
 
 ### 정적페이지 ###
-!**/src/main/resources/static/html/
+**/src/main/resources/static/html/
