@@ -17,11 +17,11 @@
     <!-- location fragment -->
     <th:block th:fragment="location">
                         <div class="location-text">
-                            <a href="/">우리동이야기</a>
+                            <a th:href="@{/}">우리동이야기</a>
                         </div>
                         <div class="location-next">></div>
                         <div class="location-text last">
-                            <a href="/">영등포본동 주민센터</a>
+                            <a th:href="@{/}">영등포본동 주민센터</a>
                         </div>
     </th:block>
     <!-- //location fragment -->
@@ -35,7 +35,7 @@
                         <h3 class="blind">영등포본동 주민센터 메인 화면</h3>
                         <div class="main-banner">
                             <div class="main-slider">
-                                <img src="/assets/images/main/main_banner_01.gif" alt="영등포본동 주민센터">
+                                <img th:src="@{/assets/images/main/main_banner_01.gif}" alt="영등포본동 주민센터">
                             </div>
                         </div>
                         <div class="center-info">
@@ -44,12 +44,10 @@
                             <p>09:00 ~ 18:00(월~금)<br>(공휴일 제외)</p>
                             <ul>
                                 <li>
-                                    <a href="#" class="info-office text-over"><span>직원안내</span>
-                                    </a>
+                                    <a th:href="@{/dong/staff]}" class="info-office text-over"><span>직원안내</span></a>
                                 </li>
                                 <li>
-                                    <a href="./dong/directions.html" class="info-location text-over"><span>찾아오시는길</span>
-                                    </a>
+                                    <a th:href="@{/dong/directions}" class="info-location text-over"><span>찾아오시는길</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -101,7 +99,7 @@
                                                 <b>2025-12-17</b>
                                             </li>
                                         </ul>
-                                        <a href="#" class="btn-more"><span class="blind">우리동 소식 더보기</span></a>
+                                        <a th:href="@{/news/dongnews}" class="btn-more"><span class="blind">우리동 소식 더보기</span></a>
                                     </div>
                                 </li>
                                 <li>
@@ -130,7 +128,7 @@
                                                 <b>2025-12-29</b>
                                             </li>
                                         </ul>
-                                        <a href="#" class="btn-more"><span class="blind">우리구 소식 더보기</span></a>
+                                        <a th:href="@{/news/gunews}" class="btn-more"><span class="blind">우리구 소식 더보기</span></a>
                                     </div>
                                 </li>
                             </ul>
@@ -151,7 +149,7 @@
                                     </a>
                                 </li>
                             </ul>
-                            <a href="#" class="btn-more"><span class="blind">우리동 갤러리 더보기</span></a>
+                            <a th:href="@{/news/gallery}" class="btn-more"><span class="blind">우리동 갤러리 더보기</span></a>
                         </div>
                     </section>
                     <section class="main-program">

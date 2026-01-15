@@ -7,16 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/news/*")
 public class NewsController {
-    @GetMapping("/dongnews")
-    public String dongNews() {
-        return "news/dong_news_list";
-    }
-
-    @GetMapping("/dongnewsview")
-    public String dongNewsView() {
-        return "news/dong_news_view";
-    }
-
     @GetMapping("/gunews")
     public String guNews() {
         return "news/gu_news_list";
