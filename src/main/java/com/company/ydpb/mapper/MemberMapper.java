@@ -7,5 +7,5 @@ import java.util.List;
 
 @Mapper
 public interface MemberMapper {
-    public List<MemberVo> getList();
+    List<MemberVo> getList();
 }

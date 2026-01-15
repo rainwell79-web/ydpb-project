@@ -8,11 +8,11 @@ import java.util.List;
 
 @Mapper
 public interface DongNewsMapper {
-    public int getTotalCount(Criteria cri);
-    public List<DongNewsVo> getList(Criteria cri);
-    public void updateCount(Long dsNo);
-    public DongNewsVo get(Long dsNo);
-    public int insert(DongNewsVo vo);
-    public int update(DongNewsVo vo);
-    public int delete(Long dsNo);
+    int getTotalCount(Criteria cri);
+    List<DongNewsVo> getList(Criteria cri);
+    void updateCount(Long dsNo);
+    DongNewsVo get(Long dsNo);
+    int insert(DongNewsVo vo);
+    int update(DongNewsVo vo);
+    int delete(Long dsNo);
 }

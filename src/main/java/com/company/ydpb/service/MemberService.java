@@ -5,5 +5,5 @@ import com.company.ydpb.domain.MemberVo;
 import java.util.List;
 
 public interface MemberService {
-    public List<MemberVo> getList();
+    List<MemberVo> getList();
 }

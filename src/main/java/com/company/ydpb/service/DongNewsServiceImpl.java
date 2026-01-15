@@ -21,30 +21,30 @@ public class DongNewsServiceImpl implements DongNewsService {
     @Override
     public List<DongNewsVo> getList(Criteria cri) {
         return mapper.getList(cri);
-    };
+    }
 
     @Override
     public void increaseCount(Long dsNo) {
         mapper.updateCount(dsNo);
-    };
+    }
 
     @Override
     public DongNewsVo view(Long dsNo) {
         return mapper.get(dsNo);
-    };
+    }
 
     @Override
     public int write(DongNewsVo vo) {
         return mapper.insert(vo);
-    };
+    }
 
     @Override
     public int edit(DongNewsVo vo) {
         return mapper.update(vo);
-    };
+    }
 
     @Override
     public int delete(Long dsNo) {
         return mapper.delete(dsNo);
-    };
+    }
 }
