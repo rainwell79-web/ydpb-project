@@ -31,13 +31,13 @@ public class DongNewsServiceImpl implements DongNewsService {
     }
 
     @Override
-    public void increaseCount(Long dsNo) {
-        mapper.updateCount(dsNo);
+    public void increaseCount(Long bno) {
+        mapper.updateCount(bno);
     }
 
     @Override
-    public DongNewsVo view(Long dsNo) {
-        return mapper.get(dsNo);
+    public DongNewsVo view(Long bno) {
+        return mapper.get(bno);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class DongNewsServiceImpl implements DongNewsService {
     }
 
     @Override
-    public int delete(Long dsNo) {
-        return mapper.delete(dsNo);
+    public int delete(Long bno) {
+        return mapper.delete(bno);
     }
 }
