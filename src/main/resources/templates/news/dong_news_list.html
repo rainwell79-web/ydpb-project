@@ -32,25 +32,26 @@
                 <!-- contents -->
                 <div id="contents" class="contents-board-list dong-news-list inner">
                     <div class="board-search">
-                        <form action="#">
+                        <form th:action="@{/news/dongnews}">
                             <fieldset>
                                 <legend class="blind">게시물검색</legend>
                                 <div class="search-group">
                                     <label for="searchType" class="blind">검색항목 선택</label>
                                     <select name="searchType" id="searchType" title="검색항목선택" class="input">
-                                        <option value="title" selected="selected">제목</option>
+                                        <option value="T" selected="selected">제목</option>
+                                        <option value="C">내용</option>
                                     </select>
                                     <label for="keyword" class="blind">검색어 입력</label>
-                                    <input type="text" name="keyword" id="keyword" class="input input-form">
+                                    <input type="text" name="keyword" id="keyword" class="input input-form" th:value="${cri.keyword}">
                                     <input value="검색" type="submit" class="btn btn-list-search">
                                 </div>
                             </fieldset>
                         </form>
                     </div>
 
-                    <div class="list-count">
-                        <span>총 <em th:text="${pageMaker.total}">100</em> 개</span>
-                        <span>[ <b th:text="${cri.pageNum}">1</b> / [[${pageMaker.realEnd}]] 페이지]</span>
+                    <div class="list-count" th:if="${paging.total > 0}">
+                        <span>총 <em th:text="${paging.total}">100</em> 개</span>
+                        <span>[ <b th:text="${cri.pageNum}">1</b> / [[${paging.realEnd}]] 페이지]</span>
                     </div>
                     <table class="table table-board">
                         <colgroup>
@@ -72,66 +73,48 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>23</td>
+                            <!--/* 데이터 없음 */-->
+                            <tr th:if="${paging.total == 0}">
+                                <td colspan="6" class="no-data">게시글이 없습니다</td>
+                            </tr>
+                            <!--/* //데이터 없음 */-->
+
+                            <tr th:each="board, s : ${list}" th:object="${board}">
+                                <td th:text="${paging.startNum - s.index}">번호 출력</td>
                                 <td class="td-title">
-                                    <a href="dong_news_view.html">2026년 상반기 청년 일자리사업 참여자 모집 안내 <span class="icon new">NEW</span></a>
+                                    <a th:href="@{/news/dongnewsview(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${cri.pageNum}, dsNo=*{dsNo})}" th:text="*{dsTitle}">제목 출력</a>
+                                    <span class="icon new" th:if="*{isNew()}">NEW</span>
                                 </td>
-                                <td>영등포본동</td>
+                                <td th:text="*{dsDepart}">부서 출력</td>
                                 <td>
-                                    <time datetime="2025-12-29">2025.12.29</time>
+                                    <time th:datetime="${#dates.format(board.dsRegdate, 'yyyy-MM-dd')}" th:text="${#dates.format(board.dsRegdate, 'yyyy.MM.dd')}">날짜 출력</time>
                                 </td>
-                                <td>7</td>
+                                <td th:text="*{dsHit}">조회수 출력</td>
                                 <td>
-                                    <a href="#" title="첨부파일 다운로드">
-                                        <span class="icon png">PNG 파일 첨부</span>
+                                    <th:block th:if="*{fileType != null}"></th:block>
+                                    <span th:if="*{files == 'zip'}" class="icon zip">다중 파일</span>
+                                    <a href="#" title="첨부파일 다운로드" th:if="*{fileType != 'zip'}">
+                                        <span th:class="*{'icon ' + fileType}">[[*{fileType}]] 파일 첨부</span>
                                     </a>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>22</td>
-                                <td class="td-title">
-                                    <a href="dong_news_view.html">서울청년센터 영등포, 운영시간 변경 안내</a>
-                                </td>
-                                <td>영등포본동</td>
-                                <td>
-                                    <time datetime="2025-12-26">2025.12.26</time>
-                                </td>
-                                <td>7</td>
-                                <td>
-                                    <a href="#" title="첨부파일 다운로드">
-                                        <span class="icon png">PNG 파일 첨부</span>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>21</td>
-                                <td class="td-title">
-                                    <a href="dong_news_view.html">작은도서관 자원봉사자 모집 안내</a>
-                                </td>
-                                <td>영등포본동</td>
-                                <td>
-                                    <time datetime="2025-12-17">2025.12.17</time>
-                                </td>
-                                <td>7</td>
-                                <td></td>
                             </tr>
                         </tbody>
                     </table>
 
-                    <div class="pagination">
-                        <div class="page-control" th:if="${pageMaker.arrows}">
-                            <a href="#" class="page-link first" title="처음 페이지로 이동"><span class="blind">처음 페이지</span></a>
-                            <a href="#" class="page-link prev" title="이전 10페이지로 이동"><span class="blind">이전 10페이지</span></a>
+                    <div class="pagination" th:if="${paging.total > 0}">
+                        <div class="page-control" th:if="${paging.isArrows}">
+                            <a th:href="@{/news/dongnews(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=1)}" class="page-link first" title="처음 페이지로 이동"><span class="blind">처음 페이지</span></a>
+                            <a th:href="@{/news/dongnews(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${paging.prevPage})}" class="page-link prev" title="이전 10페이지로 이동"><span class="blind">이전 10페이지</span></a>
                         </div>
                         <div class="page-group">
-                            <strong class="page-active">1</strong>
-                            <a href="#" class="page-link" title="2 페이지로 이동">2</a>
-                            <a href="#" class="page-link" title="3 페이지로 이동">3</a>
+                            <th:block th:each="i : ${#numbers.sequence(paging.startPage, paging.endPage)}">
+                                <strong class="page-active" th:if="${i == cri.pageNum}" th:text="${i}">현재페이지숫자</strong>
+                                <a th:href="@{/news/dongnews(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${i})}" class="page-link" th:if="${i != cri.pageNum}" th:title="${i + '페이지로 이동'}" th:text="${i}">링크페이지숫자</a>
+                            </th:block>
                         </div>
-                        <div class="page-control" th:if="${pageMaker.arrows}">
-                            <a href="#" class="page-link next" title="다음 10페이지로 이동"><span class="blind">다음 10페이지</span></a>
-                            <a href="#" class="page-link last" title="마지막 페이지로 이동"><span class="blind">마지막 페이지</span></a>
+                        <div class="page-control">
+                            <a th:href="@{/news/dongnews(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${paging.nextPage})}" class="page-link next" title="다음 10페이지로 이동"><span class="blind">다음 10페이지</span></a>
+                            <a th:href="@{/news/dongnews(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${paging.realEnd})}" class="page-link last" title="마지막 페이지로 이동"><span class="blind">마지막 페이지</span></a>
                         </div>
                     </div>
                 </div>

@@ -6,29 +6,22 @@
 <mapper namespace="com.company.ydpb.mapper.DongNewsMapper">
 
     <sql id="criteria">
-        <trim prefix="(" suffix=") " prefixOverrides="OR">
-            <foreach item="type" collection="typeArr">
-                <trim prefix="OR">
-                    <choose>
-                        <when test="type == 'T'.toString()">
-                            ds_title like '%'||#{keyword}||'%'
-                        </when>
-                        <when test="type == 'C'.toString()">
-                            ds_content like '%'||#{keyword}||'%'
-                        </when>
-                    </choose>
-                </trim>
-            </foreach>
-        </trim>
+        <where>
+            <choose>
+                <when test="searchType == 'T'.toString()">
+                    ds_title like '%'||#{keyword}||'%'
+                </when>
+                <when test="searchType == 'C'.toString()">
+                    ds_content like '%'||#{keyword}||'%'
+                </when>
+            </choose>
+        </where>
     </sql>
 
     <select id="getTotalCount" resultType="int">
         select count(*)
         from tbl_dongnews
-        <if test="typeArr.length > 0">
-            where
-            <include refid="criteria" />
-        </if>
+        <include refid="criteria" />
     </select>
 
     <select id="getList" resultType="com.company.ydpb.domain.DongNewsVo">
@@ -38,11 +31,16 @@
                         row_number() over (order by ds_no desc) as rn
                  from /*+ INDEX_DESC(tbl_dongnews SYS_C007141) */
                      tbl_dongnews
-                 <if test="typeArr.length > 0">
-                 where
-                     <include refid="criteria" />
-                 </if>
+                <include refid="criteria" />
              )
         where rn between (#{pageNum} - 1) * #{amount} + 1 and #{pageNum} * #{amount}
+    </select>
+
+    <update id="updateCount">
+        update tbl_dongnews set ds_hit = ds_hit + 1 where ds_no = #{dsNo}
+    </update>
+
+    <select id="get" resultType="com.company.ydpb.domain.DongNewsVo">
+        select * from tbl_dongnews where ds_no = #{dsNo}
     </select>
 </mapper>

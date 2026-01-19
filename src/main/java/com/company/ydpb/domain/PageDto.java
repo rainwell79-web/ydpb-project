@@ -7,7 +7,10 @@ public class PageDto {
     private int startPage;  // 시작번호
     private int endPage;    // 끝번호
     private int realEnd;    // 전체 끝번호
-    private boolean arrows; // 페이징 이동 버튼 유무
+    private int prevPage;   // 이전 10페이지 번호
+    private int nextPage;   // 다음 10페이지 번호
+    private int startNum;   // 시작 글번호
+    private boolean isArrows;   // 페이징 이동 버튼 유무
     private int total;      // 전체 게시글 갯수
     private Criteria cri;   // pageNum(현재 페이지 번호), amount(보여줄 게시글 갯수)
 
@@ -25,8 +28,11 @@ public class PageDto {
         if (this.realEnd < this.endPage) {
             this.endPage = this.realEnd;
         }
+        this.prevPage = Math.max(this.startPage - 1, 1);
+        this.nextPage = Math.min(this.startPage + 10, this.realEnd);
+        this.startNum = total - ((cri.getPageNum() - 1) * cri.getAmount());
 
         // 이전(prev) 계산 = 페이징이 10개 이상이라면 존재
-        this.arrows = this.realEnd > 10;
+        this.isArrows = this.realEnd > 10;
     }
 }

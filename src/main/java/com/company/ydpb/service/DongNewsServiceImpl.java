@@ -3,6 +3,7 @@ package com.company.ydpb.service;
 import com.company.ydpb.domain.Criteria;
 import com.company.ydpb.domain.DongNewsVo;
 import com.company.ydpb.mapper.DongNewsMapper;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Service
 public class DongNewsServiceImpl implements DongNewsService {
-    @Autowired
+    @Setter(onMethod_ = @Autowired)
     private DongNewsMapper mapper;
 
     @Override

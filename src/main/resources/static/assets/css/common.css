@@ -247,7 +247,7 @@ label {cursor: pointer;}
 .table-form tr:first-child > th,
 .table-form tr:first-child > td {border-top: 2px solid #222222;}
 .table-form .input-auto {width: auto;}
-.table .no-data {height: 150px; color: #ec6d65; background: #f9f9f9;}
+.table .no-data {padding: 70px 0; color: #ec6d65; background: #f9f9f9;}
 
 /* list */
 .list-explain {padding: 2px 0 5px;}
