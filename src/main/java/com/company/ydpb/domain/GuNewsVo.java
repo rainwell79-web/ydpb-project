@@ -9,21 +9,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class DongNewsVo {
-    private long dsNo;
-    private String dsTitle;
-    private String dsContent;
-    private String dsDepart;
-    private String dsTel;
-    private String dsHit;
-    private String dsFiles;
-    private Timestamp dsRegdate;
+public class GuNewsVo {
+    private long gsNo;
+    private String gsTitle;
+    private String gsContent;
+    private String gsDepart;
+    private String gsTel;
+    private String gsHit;
+    private String gsFiles;
+    private String gsNuri;
+    private Timestamp gsRegdate;
 
     public List<FileDto> getFiles() {
         List<FileDto> list = new ArrayList<>();
-        if(this.dsFiles != null && !this.dsFiles.isEmpty()) {
-            for(int i = 0; i < this.dsFiles.split(",").length; i++) {
-                String fileName = this.dsFiles.split(",")[i];
+        if(this.gsFiles != null && !this.gsFiles.isEmpty()) {
+            for(int i = 0; i < this.gsFiles.split(",").length; i++) {
+                String fileName = this.gsFiles.split(",")[i];
                 String[] fileNameArr = fileName.split("\\.");
                 FileDto file = new FileDto();
                 file.setName(fileName);
@@ -35,12 +36,12 @@ public class DongNewsVo {
     }
     public String getFileType() {
         String result = null;
-        if(this.dsFiles != null && !this.dsFiles.isEmpty()) {
+        if(this.gsFiles != null && !this.gsFiles.isEmpty()) {
             result = getFiles().get(0).getType();
         }
         return result;
     }
     public boolean getIsNew() {
-        return Duration.between(this.dsRegdate.toInstant(), Instant.now()).toHours() < 24;
+        return Duration.between(this.gsRegdate.toInstant(), Instant.now()).toHours() < 24;
     }
 }

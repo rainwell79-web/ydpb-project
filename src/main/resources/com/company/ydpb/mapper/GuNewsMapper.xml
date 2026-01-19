@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.company.ydpb.mapper.GuNewsMapper">
+
+    <sql id="criteria">
+        <where>
+            <choose>
+                <when test="searchType == 'T'.toString()">
+                    gs_title like '%'||#{keyword}||'%'
+                </when>
+                <when test="searchType == 'C'.toString()">
+                    gs_content like '%'||#{keyword}||'%'
+                </when>
+                <when test="searchType == 'D'.toString()">
+                    gs_depart like '%'||#{keyword}||'%'
+                </when>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="getTotalCount" resultType="int">
+        select count(*)
+        from tbl_gunews
+        <include refid="criteria" />
+    </select>
+
+    <select id="getList" resultType="com.company.ydpb.domain.GuNewsVo">
+        select gs_no, gs_title, gs_content, gs_depart, gs_hit, gs_files, gs_regdate
+        from (
+                 select gs_no, gs_title, gs_content, gs_depart, gs_hit, gs_files, gs_regdate,
+                        row_number() over (order by gs_no desc) as rn
+                 from /*+ INDEX_DESC(tbl_gunews SYS_C007090) */
+        tbl_gunews
+                <include refid="criteria" />
+             )
+        where rn between (#{pageNum} - 1) * #{amount} + 1 and #{pageNum} * #{amount}
+    </select>
+
+    <update id="updateCount">
+        update tbl_gunews set gs_hit = gs_hit + 1 where gs_no = #{dsNo}
+    </update>
+
+    <select id="get" resultType="com.company.ydpb.domain.GuNewsVo">
+        select * from tbl_gunews where gs_no = #{dsNo}
+    </select>
+</mapper>
