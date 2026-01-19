@@ -2,6 +2,7 @@ package com.company.ydpb.service;
 
 import com.company.ydpb.domain.Criteria;
 import com.company.ydpb.domain.DongNewsVo;
+import com.company.ydpb.domain.FileVo;
 import com.company.ydpb.mapper.DongNewsMapper;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,11 @@ public class DongNewsServiceImpl implements DongNewsService {
     @Override
     public List<DongNewsVo> getList(Criteria cri) {
         return mapper.getList(cri);
+    }
+
+    @Override
+    public List<FileVo> getFiles(Long bno) {
+        return mapper.getFiles(bno);
     }
 
     @Override

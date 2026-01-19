@@ -1,6 +1,7 @@
 package com.company.ydpb.service;
 
 import com.company.ydpb.domain.Criteria;
+import com.company.ydpb.domain.FileVo;
 import com.company.ydpb.domain.GuNewsVo;
 import com.company.ydpb.mapper.GuNewsMapper;
 import lombok.Setter;
@@ -22,6 +23,11 @@ public class GuNewsServiceImpl implements GuNewsService {
     @Override
     public List<GuNewsVo> getList(Criteria cri) {
         return mapper.getList(cri);
+    }
+
+    @Override
+    public List<FileVo> getFiles(Long bno) {
+        return mapper.getFiles(bno);
     }
 
     @Override

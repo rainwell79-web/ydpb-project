@@ -82,27 +82,28 @@
                             <tr th:each="board, s : ${list}" th:object="${board}">
                                 <td th:text="${paging.startNum - s.index}">번호 출력</td>
                                 <td class="td-title">
-                                    <a th:href="@{/news/dongnewsview(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${cri.pageNum}, dsNo=*{dsNo})}" th:text="*{dsTitle}">제목 출력</a>
+                                    <a th:href="@{/news/dongnewsview(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${cri.pageNum}, bno=*{bno})}" th:text="*{boTitle}">제목 출력</a>
                                     <span class="icon new" th:if="*{isNew}">NEW</span>
                                 </td>
-                                <td th:text="*{dsDepart}">부서 출력</td>
+                                <td th:text="*{deptName}">부서 출력</td>
                                 <td>
-                                    <time th:datetime="${#dates.format(board.dsRegdate, 'yyyy-MM-dd')}" th:text="${#dates.format(board.dsRegdate, 'yyyy.MM.dd')}">날짜 출력</time>
+                                    <time th:datetime="${#dates.format(board.regdate, 'yyyy-MM-dd')}" th:text="${#dates.format(board.regdate, 'yyyy.MM.dd')}">날짜 출력</time>
                                 </td>
-                                <td th:text="*{dsHit}">조회수 출력</td>
+                                <td th:text="*{hit}">조회수 출력</td>
                                 <td>
-                                    <th:block th:if="*{fileType != null}"></th:block>
-                                    <span th:if="*{files == 'zip'}" class="icon zip">다중 파일</span>
-                                    <a href="#" title="첨부파일 다운로드" th:if="*{fileType != 'zip'}">
-                                        <span th:class="*{'icon ' + fileType}">[[*{fileType}]] 파일 첨부</span>
-                                    </a>
+                                    <th:block th:if="*{!files.isEmpty()}">
+                                        <span th:if="*{listFileType == 'zip'}" class="icon zip">다중 파일</span>
+                                        <a href="#" title="첨부파일 다운로드" th:if="*{listFileType != 'zip'}">
+                                            <span th:class="*{'icon ' + listFileType}">[[*{listFileType}]] 파일 첨부</span>
+                                        </a>
+                                    </th:block>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
 
                     <div class="pagination" th:if="${paging.total > 0}">
-                        <div class="page-control" th:if="${paging.isArrows}">
+                        <div class="page-control" th:if="${paging.arrows}">
                             <a th:href="@{/news/dongnews(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=1)}" class="page-link first" title="처음 페이지로 이동"><span class="blind">처음 페이지</span></a>
                             <a th:href="@{/news/dongnews(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${paging.prevPage})}" class="page-link prev" title="이전 10페이지로 이동"><span class="blind">이전 10페이지</span></a>
                         </div>
@@ -112,7 +113,7 @@
                                 <a th:href="@{/news/dongnews(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${i})}" class="page-link" th:if="${i != cri.pageNum}" th:title="${i + '페이지로 이동'}" th:text="${i}">링크페이지숫자</a>
                             </th:block>
                         </div>
-                        <div class="page-control" th:if="${paging.isArrows}">
+                        <div class="page-control" th:if="${paging.arrows}">
                             <a th:href="@{/news/dongnews(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${paging.nextPage})}" class="page-link next" title="다음 10페이지로 이동"><span class="blind">다음 10페이지</span></a>
                             <a th:href="@{/news/dongnews(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${paging.realEnd})}" class="page-link last" title="마지막 페이지로 이동"><span class="blind">마지막 페이지</span></a>
                         </div>

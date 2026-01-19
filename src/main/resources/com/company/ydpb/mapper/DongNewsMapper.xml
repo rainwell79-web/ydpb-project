@@ -9,10 +9,10 @@
         <where>
             <choose>
                 <when test="searchType == 'T'.toString()">
-                    ds_title like '%'||#{keyword}||'%'
+                    bo_title like '%'||#{keyword}||'%'
                 </when>
                 <when test="searchType == 'C'.toString()">
-                    ds_content like '%'||#{keyword}||'%'
+                    bo_content like '%'||#{keyword}||'%'
                 </when>
             </choose>
         </where>
@@ -25,22 +25,26 @@
     </select>
 
     <select id="getList" resultType="com.company.ydpb.domain.DongNewsVo">
-        select ds_no, ds_title, ds_content, ds_depart, ds_hit, ds_files, ds_regdate
+        select bno, bo_title, bo_content, dept_name, hit, regdate
         from (
-                 select ds_no, ds_title, ds_content, ds_depart, ds_hit, ds_files, ds_regdate,
-                        row_number() over (order by ds_no desc) as rn
-                 from /*+ INDEX_DESC(tbl_dongnews SYS_C007141) */
-                     tbl_dongnews
+            select bno, bo_title, bo_content, dept_name, hit, regdate,
+                row_number() over (order by bno desc) as rn
+            from /*+ INDEX_DESC(tbl_dongnews SYS_C007218) */
+                tbl_dongnews
                 <include refid="criteria" />
              )
         where rn between (#{pageNum} - 1) * #{amount} + 1 and #{pageNum} * #{amount}
     </select>
 
+    <select id="getFiles" resultType="com.company.ydpb.domain.FileVo">
+        select * from tbl_dongnews_flies where bno = #{bno} order by file_id
+    </select>
+
     <update id="updateCount">
-        update tbl_dongnews set ds_hit = ds_hit + 1 where ds_no = #{dsNo}
+        update tbl_dongnews set hit = hit + 1 where bno = #{bno}
     </update>
 
     <select id="get" resultType="com.company.ydpb.domain.DongNewsVo">
-        select * from tbl_dongnews where ds_no = #{dsNo}
+        select * from tbl_dongnews where bno = #{bno}
     </select>
 </mapper>

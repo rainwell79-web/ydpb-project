@@ -2,6 +2,7 @@ package com.company.ydpb.mapper;
 
 import com.company.ydpb.domain.Criteria;
 import com.company.ydpb.domain.DongNewsVo;
+import com.company.ydpb.domain.FileVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 public interface DongNewsMapper {
     int getTotalCount(Criteria cri);
     List<DongNewsVo> getList(Criteria cri);
+    List<FileVo> getFiles(Long bno);
     void updateCount(Long dsNo);
     DongNewsVo get(Long dsNo);
     int insert(DongNewsVo vo);

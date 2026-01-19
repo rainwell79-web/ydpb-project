@@ -9,13 +9,13 @@
         <where>
             <choose>
                 <when test="searchType == 'T'.toString()">
-                    gs_title like '%'||#{keyword}||'%'
+                    bo_title like '%'||#{keyword}||'%'
                 </when>
                 <when test="searchType == 'C'.toString()">
-                    gs_content like '%'||#{keyword}||'%'
+                    bo_content like '%'||#{keyword}||'%'
                 </when>
                 <when test="searchType == 'D'.toString()">
-                    gs_depart like '%'||#{keyword}||'%'
+                    dept_name like '%'||#{keyword}||'%'
                 </when>
             </choose>
         </where>
@@ -28,22 +28,26 @@
     </select>
 
     <select id="getList" resultType="com.company.ydpb.domain.GuNewsVo">
-        select gs_no, gs_title, gs_content, gs_depart, gs_hit, gs_files, gs_regdate
+        select bno, bo_title, bo_content, dept_name, hit, regdate
         from (
-                 select gs_no, gs_title, gs_content, gs_depart, gs_hit, gs_files, gs_regdate,
-                        row_number() over (order by gs_no desc) as rn
-                 from /*+ INDEX_DESC(tbl_gunews SYS_C007090) */
-        tbl_gunews
+            select bno, bo_title, bo_content, dept_name, hit, regdate,
+                row_number() over (order by bno desc) as rn
+            from /*+ INDEX_DESC(tbl_gunews SYS_C007226) */
+                tbl_gunews
                 <include refid="criteria" />
              )
         where rn between (#{pageNum} - 1) * #{amount} + 1 and #{pageNum} * #{amount}
     </select>
 
+    <select id="getFiles" resultType="com.company.ydpb.domain.FileVo">
+        select * from tbl_dongnews_flies where bno = #{bno} order by file_id
+    </select>
+
     <update id="updateCount">
-        update tbl_gunews set gs_hit = gs_hit + 1 where gs_no = #{dsNo}
+        update tbl_gunews set hit = hit + 1 where bno = #{bno}
     </update>
 
     <select id="get" resultType="com.company.ydpb.domain.GuNewsVo">
-        select * from tbl_gunews where gs_no = #{dsNo}
+        select * from tbl_gunews where bno = #{bno}
     </select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.company.ydpb.mapper;
 
 import com.company.ydpb.domain.Criteria;
+import com.company.ydpb.domain.FileVo;
 import com.company.ydpb.domain.GuNewsVo;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -10,6 +11,7 @@ import java.util.List;
 public interface GuNewsMapper {
     int getTotalCount(Criteria cri);
     List<GuNewsVo> getList(Criteria cri);
+    List<FileVo> getFiles(Long bno);
     void updateCount(Long dsNo);
     GuNewsVo get(Long dsNo);
     int insert(GuNewsVo vo);
