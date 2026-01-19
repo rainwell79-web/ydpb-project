@@ -23,6 +23,13 @@ public class BoardVo {
         return Duration.between(this.regdate.toInstant(), Instant.now()).toHours() < 24;
     }
     public String getListFileType() {
-        return this.files.isEmpty() ? "" : files.get(0).getFileType();
+        String str = "";
+        if(!this.files.isEmpty()) {
+            str = files.get(0).getFileType();
+            if(this.files.size() > 1) {
+                str = "zip";
+            }
+        }
+        return str;
     }
 }

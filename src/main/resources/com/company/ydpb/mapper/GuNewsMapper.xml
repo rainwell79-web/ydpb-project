@@ -40,7 +40,7 @@
     </select>
 
     <select id="getFiles" resultType="com.company.ydpb.domain.FileVo">
-        select * from tbl_dongnews_flies where bno = #{bno} order by file_id
+        select * from tbl_gunews_flies where bno = #{bno} order by file_id
     </select>
 
     <update id="updateCount">

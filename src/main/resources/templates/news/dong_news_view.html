@@ -43,42 +43,42 @@
                             <col class="col2">
                         </colgroup>
                         <tbody>
-                        <tr>
-                            <td colspan="2">
-                                <strong class="text-title" th:text="${board.boTitle}">제목 출력</strong>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">부서</th>
-                            <td th:text="${board.deptName}">부서 출력</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">연락처</th>
-                            <td th:text="${board.tel}">010-0000-0000</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" class="td-content">
-                                <th:block th:if="${!board.files.isEmpty()}">
-                                    <div class="img-view" th:each="file : ${board.files}" th:if="${file.fileType == 'png' || file.fileType == 'jpg'}">
-                                        <img th:src="|@{/assets/files/}${file.fileName}|" th:alt="${board.boTitle}">
-                                    </div>
-                                </th:block>
-                                <div class="text-content" th:text="${board.boContent}">내용 출력</div>
-                            </td>
-                        </tr>
-                        <tr th:if="${!board.files.isEmpty()}">
-                            <th scope="row">파일</th>
-                            <td>
-                                <ul class="attach-files">
-                                    <li th:each="file : ${board.files}">
-                                        <a href="#" class="attach-link">
-                                            <span th:class="${'icon ' + file.fileType}">[[${file.fileType}]] 파일</span>
-                                            <span th:text="${file.fileName}">파일명</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <strong class="text-title" th:text="${board.boTitle}">제목 출력</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">부서</th>
+                                <td th:text="${board.deptName}">부서 출력</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">연락처</th>
+                                <td th:text="${board.tel}">010-0000-0000</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="td-content">
+                                    <th:block th:if="${!board.files.isEmpty()}">
+                                        <div class="img-view" th:each="file : ${board.files}" th:if="${file.fileType == 'png' || file.fileType == 'jpg'}">
+                                            <img th:src="|@{/assets/files/}${file.fileName}|" th:alt="${board.boTitle}">
+                                        </div>
+                                    </th:block>
+                                    <div class="text-content" th:text="${board.boContent}">내용 출력</div>
+                                </td>
+                            </tr>
+                            <tr th:if="${!board.files.isEmpty()}">
+                                <th scope="row">파일</th>
+                                <td>
+                                    <ul class="attach-files">
+                                        <li th:each="file : ${board.files}">
+                                            <a href="#" class="attach-link">
+                                                <span th:class="${'icon ' + file.fileType}">[[${file.fileType}]] 파일</span>
+                                                <span th:text="${file.fileName}">파일명</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
 

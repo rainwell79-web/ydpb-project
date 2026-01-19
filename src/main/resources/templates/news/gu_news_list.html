@@ -89,20 +89,21 @@
                             <tr th:each="board, s : ${list}" th:object="${board}">
                                 <td th:text="${paging.startNum - s.index}">번호 출력</td>
                                 <td class="td-title">
-                                    <a th:href="@{/news/gunewsview(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${cri.pageNum}, gsNo=*{gsNo})}" th:text="*{gsTitle}">제목 출력</a>
+                                    <a th:href="@{/news/gunewsview(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${cri.pageNum}, bno=*{bno})}" th:text="*{boTitle}">제목 출력</a>
                                     <span class="icon new" th:if="*{isNew}">NEW</span>
                                 </td>
-                                <td th:text="*{gsDepart}">부서 출력</td>
+                                <td th:text="*{deptName}">부서 출력</td>
                                 <td>
-                                    <time th:datetime="${#dates.format(board.gsRegdate, 'yyyy-MM-dd')}" th:text="${#dates.format(board.gsRegdate, 'yyyy.MM.dd')}">날짜 출력</time>
+                                    <time th:datetime="${#dates.format(board.regdate, 'yyyy-MM-dd')}" th:text="${#dates.format(board.regdate, 'yyyy.MM.dd')}">날짜 출력</time>
                                 </td>
-                                <td th:text="*{gsHit}">조회수 출력</td>
+                                <td th:text="*{hit}">조회수 출력</td>
                                 <td>
-                                    <th:block th:if="*{fileType != null}"></th:block>
-                                    <span th:if="*{files == 'zip'}" class="icon zip">다중 파일</span>
-                                    <a href="#" title="첨부파일 다운로드" th:if="*{fileType != 'zip'}">
-                                        <span th:class="*{'icon ' + fileType}">[[*{fileType}]] 파일 첨부</span>
-                                    </a>
+                                    <th:block th:if="*{!files.isEmpty()}">
+                                        <span th:if="*{listFileType == 'zip'}" class="icon zip">다중 파일</span>
+                                        <a href="#" title="첨부파일 다운로드" th:if="*{listFileType != 'zip'}">
+                                            <span th:class="*{'icon ' + listFileType}">[[*{listFileType}]] 파일 첨부</span>
+                                        </a>
+                                    </th:block>
                                 </td>
                             </tr>
                         </tbody>

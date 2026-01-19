@@ -33,9 +33,9 @@
                 <div id="contents" class="contents-board-view dong-news-view inner">
                     <div class="board-info">
                         <span>조회수</span>
-                        <b class="hit">150</b>
+                        <b class="hit" th:text="${board.hit}">조회수 출력</b>
                         <span>작성일</span>
-                        <time datetime="2026-01-05">2026.01.05</time>
+                        <time th:datetime="${#dates.format(board.regdate, 'yyyy-MM-dd')}" th:text="${#dates.format(board.regdate, 'yyyy.MM.dd')}">날짜 출력</time>
                     </div>
                     <table class="table table-form">
                         <colgroup>
@@ -43,48 +43,53 @@
                             <col class="col2">
                         </colgroup>
                         <tbody>
-                        <tr>
-                            <td colspan="2">
-                                <strong class="text-title">영등포구 마을버스 저상버스 예외승인 노선 현황(2025.12.31. 기준)</strong>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" class="td-content">
-                                교통약자의 이동편의 증진법 시행규칙 제4조의 3(저상버스 예외승인에 대한 사후 관리 등)제4항에 따라 저상버스 예외승인 노선 및 사유, 해당 사유에 대한 개선계획을 아래와 같이 공개합니다.
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">부서</th>
-                            <td>교통행정과</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">연락처</th>
-                            <td>02-2670-7573</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">파일</th>
-                            <td>
-                                <ul class="attach-files">
-                                    <li>
-                                        <a href="#" class="attach-link">
-                                            <span class="icon xlsx">xlsx 파일</span>
-                                            <span>영등포구 마을버스 저상버스 예외승인 노선 현황.xlsx</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">공공누리</th>
-                            <td>
-                                <img src="../../assets/images/board/img_opentype_01.png" alt="공공누리의 제1유형 : 출처표시">
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <strong class="text-title" th:text="${board.boTitle}">제목 출력</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="td-content">
+                                    <th:block th:if="${!board.files.isEmpty()}">
+                                        <div class="img-view" th:each="file : ${board.files}" th:if="${file.fileType == 'png' || file.fileType == 'jpg'}">
+                                            <img th:src="|@{/assets/files/}${file.fileName}|" th:alt="${board.boTitle}">
+                                        </div>
+                                    </th:block>
+                                    <div class="text-content" th:text="${board.boContent}">내용 출력</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">부서</th>
+                                <td th:text="${board.deptName}">부서 출력</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">연락처</th>
+                                <td th:text="${board.tel}">010-0000-0000</td>
+                            </tr>
+                            <tr th:if="${!board.files.isEmpty()}">
+                                <th scope="row">파일</th>
+                                <td>
+                                    <ul class="attach-files">
+                                        <li th:each="file : ${board.files}">
+                                            <a href="#" class="attach-link">
+                                                <span th:class="${'icon ' + file.fileType}">[[${file.fileType}]] 파일</span>
+                                                <span th:text="${file.fileName}">파일명</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr th:if="${board.nuri == 'Y'}">
+                                <th scope="row">공공누리</th>
+                                <td>
+                                    <img th:src="@{/assets/images/board/img_opentype_01.png}" alt="공공누리의 제1유형 : 출처표시">
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
 
                     <div class="board-btns">
-                        <a href="gu_news_list.html" class="btn btn-write list">목록</a>
+                        <a th:href="@{/news/gunews(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${cri.pageNum})}" class="btn btn-write list">목록</a>
                     </div>
 
                     <ul class="board-move-post">
