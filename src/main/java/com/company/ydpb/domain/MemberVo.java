@@ -3,20 +3,21 @@ package com.company.ydpb.domain;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Data
 @NoArgsConstructor
 public class MemberVo {
     private String memId;
     private String memName;
-    private String memGender;
+    private String birth;
+    private String gender;
     private String memPassword;
-    private String memAddress;
-    private String memAddress_detail;
-    private String memTel;
-    private String memMobile;
-    private String memEmail;
-    private String memNews;
-    private Date memRegdate;
+    private String address;
+    private String addressDetail;
+    private String tel;
+    private String mobile;
+    private String email;
+    private String newsYn;
+    private Timestamp regdate;
 }

@@ -10,7 +10,7 @@ body {min-width: 1240px; color: #4c4c4c; font-size: 1.6rem; font-family: 'Spoqa 
 .skip-nav a:focus {top: 0; width: 100%; height: auto; z-index: 2000;}
 
 /* header */
-.header {font-family: 'S-CoreDream'; letter-spacing: -0.4px;}
+.header {font-family: 'S-CoreDream', sans-serif; letter-spacing: -0.4px;}
 .header .nurizip {position: relative; background: #edf1f5; z-index: 1001;}
 .header .nurizip p {padding-left: 30px; font-size: 1.3rem; line-height: 3.2rem; background: url(../images/icon/icon_kor.png) no-repeat left center / 24px auto;}
 .header .dev-status {position: relative; padding: 4px 0; border-bottom: 1px solid #e6e6e6; background: #fff; z-index: 1001;}
@@ -80,7 +80,7 @@ body {min-width: 1240px; color: #4c4c4c; font-size: 1.6rem; font-family: 'Spoqa 
 .weather .weather-image img {width: 65px;}
 .weather .weather-info {margin-left: 22px;}
 .weather .weather-info li {display: inline-block; color: #000; font-weight: 600;}
-.weather .weather-info .temperature-num {font-family: 'nps'; font-size: 3rem;}
+.weather .weather-info .temperature-num {font-family: 'nps', sans-serif; font-size: 3rem;}
 .weather .weather-info .temperature-text {font-size: 1.7rem;}
 .weather .weather-info dl {display: flex; padding-bottom: 4px; color: #000; font-size: 1.4rem;}
 .weather .weather-info dd {padding: 0 20px 0 5px; font-weight: 600; background-repeat: no-repeat; background-position: right center; background-size: 16px auto;}
@@ -93,7 +93,7 @@ body {min-width: 1240px; color: #4c4c4c; font-size: 1.6rem; font-family: 'Spoqa 
 .header-search .btn-search {position: absolute; right: 0; bottom: -15px; width: 58px; height: 58px; font-size: 0; text-indent: -9999px; border: 0 none; border-radius: 50%; background: url(../images/common/btn_search.png) no-repeat center center / 100% auto; cursor: pointer;}
 
 /* footer */
-.footer {margin-top: 60px; color: #1e2124; font-family: 'Pretendard GOV'; letter-spacing: -0.4px; background: #f4f5f6;}
+.footer {margin-top: 60px; color: #1e2124; font-family: 'Pretendard GOV', sans-serif; letter-spacing: -0.4px; background: #f4f5f6;}
 .footer-logo {padding: 30px 0 40px;}
 .footer-logo img {width: 156px;}
 .footer-info {display: flex; justify-content: space-between; position: relative; font-size: 1.7rem;}
@@ -258,9 +258,10 @@ label {cursor: pointer;}
 /* icon */
 .icon {display: inline-block; width: 24px; height: 24px; font-size: 0; text-indent: -999px; vertical-align: middle; background-repeat: no-repeat; background-position: center center;}
 .icon.new {background-image: url(../images/icon/icon_new.png);}
-.icon.hwp {background-image: url(../images/icon/icon_file_hwp.png);}
-.icon.jpg {background-image: url(../images/icon/icon_file_img.png);}
+.icon.jpg,
+.icon.jpeg,
 .icon.png {background-image: url(../images/icon/icon_file_img.png);}
+.icon.hwp {background-image: url(../images/icon/icon_file_hwp.png);}
 .icon.pdf {background-image: url(../images/icon/icon_file_pdf.png);}
 .icon.pptx {background-image: url(../images/icon/icon_file_pptx.png);}
 .icon.xlsx {background-image: url(../images/icon/icon_file_xlsx.png);}

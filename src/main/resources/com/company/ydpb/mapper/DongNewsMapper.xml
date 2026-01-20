@@ -25,9 +25,9 @@
     </select>
 
     <select id="getList" resultType="com.company.ydpb.domain.DongNewsVo">
-        select bno, bo_title, bo_content, dept_name, hit, regdate
+        select bno, bo_title, dept_name, hit, regdate
         from (
-            select bno, bo_title, bo_content, dept_name, hit, regdate,
+            select bno, bo_title, dept_name, hit, regdate,
                 row_number() over (order by bno desc) as rn
             from /*+ INDEX_DESC(tbl_dongnews SYS_C007218) */
                 tbl_dongnews

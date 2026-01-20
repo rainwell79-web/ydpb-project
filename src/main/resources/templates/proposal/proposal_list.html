@@ -32,25 +32,26 @@
                 <!-- contents -->
                 <div id="contents" class="contents-board-list proposal-list inner">
                     <div class="board-search">
-                        <form action="#">
+                        <form th:action="@{/proposal/board}">
                             <fieldset>
                                 <legend class="blind">게시물검색</legend>
                                 <div class="search-group">
                                     <label for="searchType" class="blind">검색항목 선택</label>
                                     <select name="searchType" id="searchType" title="검색항목선택" class="input">
-                                        <option value="title" selected="selected">제안제목</option>
+                                        <option value="T" th:selected="${cri.searchType == 'T' || cri.searchType == null}">제안제목</option>
+                                        <option value="C" th:selected="${cri.searchType == 'C'}">개선방안</option>
                                     </select>
-                                    <label for="searchKeyword" class="blind">검색어 입력</label>
-                                    <input type="text" name="searchKeyword" id="searchKeyword" class="input input-form">
+                                    <label for="keyword" class="blind">검색어 입력</label>
+                                    <input type="text" name="keyword" id="keyword" class="input input-form" th:value="${cri.keyword}">
                                     <input value="검색" type="submit" class="btn btn-list-search">
                                 </div>
                             </fieldset>
                         </form>
                     </div>
 
-                    <div class="list-count">
-                        <span>총 <em>23</em> 개</span>
-                        <span>[ <b>1</b> / 3 페이지]</span>
+                    <div class="list-count" th:if="${paging.total > 0}">
+                        <span>총 <em th:text="${paging.total}">100</em> 개</span>
+                        <span>[ <b th:text="${cri.pageNum}">1</b> / [[${paging.realEnd}]] 페이지]</span>
                     </div>
                     <table class="table table-board">
                         <colgroup>
@@ -61,64 +62,50 @@
                             <col class="col5">
                         </colgroup>
                         <thead>
-                        <tr>
-                            <th scope="col">번호</th>
-                            <th scope="col">제안제목</th>
-                            <th scope="col">제안일</th>
-                            <th scope="col">공개여부</th>
-                            <th scope="col">처리상황</th>
-                        </tr>
+                            <tr>
+                                <th scope="col">번호</th>
+                                <th scope="col">제안제목</th>
+                                <th scope="col">제안일</th>
+                                <th scope="col">공개여부</th>
+                                <th scope="col">처리상황</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>23</td>
-                            <td class="td-title">
-                                <a href="proposal_view.html">지하철역 미화개선</a>
-                            </td>
-                            <td>
-                                <time datetime="2025-12-12">2025.12.12</time>
-                            </td>
-                            <td>Y</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>22</td>
-                            <td class="td-title">
-                                <a href="proposal_view.html" onclick="alert('권한이 없습니다.'); return false">지하철역 미화개선</a>
-                            </td>
-                            <td>
-                                <time datetime="2025-12-12">2025.12.12</time>
-                            </td>
-                            <td>N</td>
-                            <td>진행중</td>
-                        </tr>
-                        <tr>
-                            <td>21</td>
-                            <td class="td-title">
-                                <a href="proposal_view.html">지하철역 미화개선</a>
-                            </td>
-                            <td>
-                                <time datetime="2025-12-12">2025.12.12</time>
-                            </td>
-                            <td>Y</td>
-                            <td>완료</td>
-                        </tr>
+                            <!--/* 데이터 없음 */-->
+                            <tr th:if="${paging.total == 0}">
+                                <td colspan="5" class="no-data">게시글이 없습니다</td>
+                            </tr>
+                            <!--/* //데이터 없음 */-->
+
+                            <tr th:each="board, s : ${list}" th:object="${board}">
+                                <td th:text="${paging.startNum - s.index}">번호 출력</td>
+                                <td class="td-title">
+                                    <a th:href="@{/proposal/boardview(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${cri.pageNum}, bno=*{bno})}" th:text="*{boTitle}" th:if="${board.plPublic == 'Y' || (session.loginId == null && board.memId == session.loginId)}">제목 출력</a>
+                                    <a href="javascript:alert('권한이 없습니다.')" th:text="*{boTitle}" th:if="${board.plPublic == 'N' && (session.loginId != null || board.memId != session.loginId)}">제목 출력</a>
+                                </td>
+                                <td>
+                                    <time th:datetime="${#dates.format(board.regdate, 'yyyy-MM-dd')}" th:text="${#dates.format(board.regdate, 'yyyy.MM.dd')}">날짜 출력</time>
+                                </td>
+                                <td th:text="*{plPublic}">공개여부 출력</td>
+                                <td th:text="*{status}">처리상황 출력</td>
+                            </tr>
                         </tbody>
                     </table>
 
-                    <div class="pagination">
-                        <div class="page-control">
-                            <a href="#" class="page-link first" title="처음 페이지로 이동"><span class="blind">처음 페이지</span></a>
-                            <a href="#" class="page-link prev" title="이전 10페이지로 이동"><span class="blind">이전 10페이지</span></a>
+                    <div class="pagination" th:if="${paging.total > 0}">
+                        <div class="page-control" th:if="${paging.arrows}">
+                            <a th:href="@{/proposal/board(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=1)}" class="page-link first" title="처음 페이지로 이동"><span class="blind">처음 페이지</span></a>
+                            <a th:href="@{/proposal/board(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${paging.prevPage})}" class="page-link prev" title="이전 10페이지로 이동"><span class="blind">이전 10페이지</span></a>
                         </div>
                         <div class="page-group">
-                            <strong class="page-active">1</strong>
-                            <a href="#" class="page-link" title="2 페이지로 이동">2</a>
-                            <a href="#" class="page-link" title="3 페이지로 이동">3</a>
+                            <th:block th:each="i : ${#numbers.sequence(paging.startPage, paging.endPage)}">
+                                <strong class="page-active" th:if="${i == cri.pageNum}" th:text="${i}">현재페이지숫자</strong>
+                                <a th:href="@{/proposal/board(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${i})}" class="page-link" th:if="${i != cri.pageNum}" th:title="${i + '페이지로 이동'}" th:text="${i}">링크페이지숫자</a>
+                            </th:block>
                         </div>
-                        <div class="page-control">
-                            <a href="#" class="page-link next" title="다음 10페이지로 이동"><span class="blind">다음 10페이지</span></a>
-                            <a href="#" class="page-link last" title="마지막 페이지로 이동"><span class="blind">마지막 페이지</span></a>
+                        <div class="page-control" th:if="${paging.arrows}">
+                            <a th:href="@{/proposal/board(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${paging.nextPage})}" class="page-link next" title="다음 10페이지로 이동"><span class="blind">다음 10페이지</span></a>
+                            <a th:href="@{/proposal/board(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${paging.realEnd})}" class="page-link last" title="마지막 페이지로 이동"><span class="blind">마지막 페이지</span></a>
                         </div>
                     </div>
 

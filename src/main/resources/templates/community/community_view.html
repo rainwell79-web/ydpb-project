@@ -33,9 +33,9 @@
                 <div id="contents" class="contents-board-view community-view inner">
                     <div class="board-info">
                         <span>조회수</span>
-                        <b class="hit">12</b>
+                        <b class="hit" th:text="${board.hit}">조회수 출력</b>
                         <span>작성일</span>
-                        <time datetime="2025-25-09">2025.12.19</time>
+                        <time th:datetime="${#dates.format(board.regdate, 'yyyy-MM-dd')}" th:text="${#dates.format(board.regdate, 'yyyy.MM.dd')}">날짜 출력</time>
                     </div>
                     <table class="table table-form">
                         <colgroup>
@@ -43,47 +43,41 @@
                             <col class="col2">
                         </colgroup>
                         <tbody>
-                        <tr>
-                            <td colspan="2">
-                                <strong class="text-title">2025년 영등포본동 주민자치사업 결과보고</strong>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" class="td-content">
-                                2025년 영등포본동 주민자치사업 결과보고
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">행정동</th>
-                            <td>영등포본동</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">파일</th>
-                            <td>
-                                <ul class="attach-files">
-                                    <li>
-                                        <a href="#" class="attach-link">
-                                            <span class="icon pdf">PDF 파일</span>
-                                            <span>pdf 파일 영등포본동 주민자치 동특화사업 결과보고.pdf</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="attach-link">
-                                            <span class="icon xlsx">xlsx 파일</span>
-                                            <span>2024 주민자치위원회 위원 인적사항 공고（영등포본동.xlsx</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">부서</th>
-                            <td>영등포본동</td>
-                        </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <strong class="text-title" th:text="${board.boTitle}">제목 출력</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="td-content">
+                                    <div class="text-content" th:text="${board.boContent}">내용 출력</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">행정동</th>
+                                <td th:text="${board.dongName}">행정동 출력</td>
+                            </tr>
+                            <tr th:if="${!board.files.isEmpty()}">
+                                <th scope="row">파일</th>
+                                <td>
+                                    <ul class="attach-files">
+                                        <li th:each="file : ${board.files}">
+                                            <a href="#" class="attach-link">
+                                                <span th:class="${'icon ' + file.fileType}">[[${file.fileType}]] 파일</span>
+                                                <span th:text="${file.fileName}">파일명</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr th:if="${board.deptName != null}">
+                                <th scope="row">부서</th>
+                                <td th:text="${board.deptName}">부서 출력</td>
+                            </tr>
                         </tbody>
                     </table>
                     <div class="board-btns">
-                        <a href="dong_news_list.html" class="btn btn-write list">목록</a>
+                        <a th:href="@{/community/board(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${cri.pageNum})}" class="btn btn-write list">목록</a>
                     </div>
 
                     <ul class="board-move-post">

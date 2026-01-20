@@ -1,20 +1,20 @@
 package com.company.ydpb.mapper;
 
+import com.company.ydpb.domain.CommunityVo;
 import com.company.ydpb.domain.Criteria;
 import com.company.ydpb.domain.FileVo;
-import com.company.ydpb.domain.GuNewsVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 @Mapper
-public interface GuNewsMapper {
+public interface CommunityMapper {
     int getTotalCount(Criteria cri);
-    List<GuNewsVo> getList(Criteria cri);
+    List<CommunityVo> getList(Criteria cri);
     List<FileVo> getFiles(Long bno);
     void updateCount(Long bno);
-    GuNewsVo get(Long bno);
-    int insert(GuNewsVo vo);
-    int update(GuNewsVo vo);
+    CommunityVo get(Long bno);
+    int insert(CommunityVo vo);
+    int update(CommunityVo vo);
     int delete(Long bno);
 }

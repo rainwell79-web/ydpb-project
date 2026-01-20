@@ -1,9 +1,9 @@
 package com.company.ydpb.controller;
 
-import com.company.ydpb.domain.CommunityVo;
 import com.company.ydpb.domain.Criteria;
+import com.company.ydpb.domain.GalleryVo;
 import com.company.ydpb.domain.PageDto;
-import com.company.ydpb.service.CommunityService;
+import com.company.ydpb.service.GalleryService;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,32 +15,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/community/*")
-public class CommunityController {
+@RequestMapping("/news/*")
+public class GalleryController {
     @Setter(onMethod_ = @Autowired)
-    private CommunityService service;
+    private GalleryService service;
 
-    @GetMapping("guide")
-    public String guide() {
-        return "community/community_guide";
-    }
-
-    @GetMapping("board")
-    public String board(@ModelAttribute("cri") Criteria cri, Model model) {
-        List<CommunityVo> list = service.getList(cri);
+    @GetMapping("gallery")
+    public String gallery(@ModelAttribute("cri") Criteria cri, Model model) {
+        cri.setAmount(12);
+        List<GalleryVo> list = service.getList(cri);
         list.forEach(item -> item.setFiles(service.getFiles(item.getBno())));
         model.addAttribute("list", list);
         model.addAttribute("paging", new PageDto(cri, service.getTotalCount(cri)));
-        return "community/community_list";
+        return "news/gallery_list";
     }
 
-    @GetMapping("boardview")
-    public String boardView(@ModelAttribute("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
+    @GetMapping("galleryview")
+    public String galleryView(@ModelAttribute("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
         service.increaseCount(bno);
-        CommunityVo board = service.view(bno);
+        GalleryVo board = service.view(bno);
         board.setFiles(service.getFiles(bno));
         model.addAttribute("board", board);
-        return "community/community_view";
+        return "news/gallery_view";
     }
-
 }

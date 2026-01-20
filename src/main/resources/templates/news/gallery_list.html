@@ -32,104 +32,63 @@
                 <!-- contents -->
                 <div id="contents" class="contents-board-list gallery-list inner">
                     <div class="board-search">
-                        <form action="#">
+                        <form th:action="@{/news/gallery}">
                             <fieldset>
                                 <legend class="blind">게시물검색</legend>
                                 <div class="search-group">
                                     <label for="searchType" class="blind">검색항목 선택</label>
                                     <select name="searchType" id="searchType" title="검색항목선택" class="input">
-                                        <option value="title" selected="selected">제목</option>
+                                        <option value="T" th:selected="${cri.searchType == 'T' || cri.searchType == null}">제목</option>
+                                        <option value="C" th:selected="${cri.searchType == 'C'}">내용</option>
                                     </select>
-                                    <label for="searchKeyword" class="blind">검색어 입력</label>
-                                    <input type="text" name="searchKeyword" id="searchKeyword" class="input input-form">
+                                    <label for="keyword" class="blind">검색어 입력</label>
+                                    <input type="text" name="keyword" id="keyword" class="input input-form" th:value="${cri.keyword}">
                                     <input value="검색" type="submit" class="btn btn-list-search">
                                 </div>
                             </fieldset>
                         </form>
                     </div>
 
-                    <div class="list-count">
-                        <span>총 <em>23</em> 개</span>
-                        <span>[ <b>1</b> / 3 페이지]</span>
+                    <div class="list-count" th:if="${paging.total > 0}">
+                        <span>총 <em th:text="${paging.total}">100</em> 개</span>
+                        <span>[ <b th:text="${cri.pageNum}">1</b> / [[${paging.realEnd}]] 페이지]</span>
                     </div>
                     <div class="photo-gallery">
                         <ul class="gallery-list">
-                            <li>
-                                <a href="gallery_view.html">
+                            <!--/* 데이터 없음 */-->
+                            <li th:if="${paging.total == 0}" class="no-data">게시글이 없습니다</li>
+                            <!--/* //데이터 없음 */-->
+
+                            <li th:each="board, s : ${list}" th:object="${board}">
+                                <a th:href="@{/news/galleryview(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${cri.pageNum}, bno=*{bno})}">
                                     <div class="image">
-                                        <img src="../../assets/files/gallery_thumb_01.jpg" alt="(12/26) 통장연합회 12월 정례회의 의 이미지">
+                                        <img th:src="|@{/assets/files/}*{files.get(0).fileName}|" th:alt="*{boTitle}" th:if="*{!files.isEmpty()}">
+                                        <img th:src="@{/assets/images/board/thumb_no_image.png}" th:alt="*{boTitle}" th:if="*{files.isEmpty()}">
                                     </div>
-                                    <strong>(12/26) 통장연합회 12월 정례회의</strong>
+                                    <strong th:text="*{boTitle}">제목 출력</strong>
                                     <div class="sub-info">
-                                        <time datetime="2025-12-28">2025.12.28</time>
-                                        <span class="hit"><i class="blind">조회 : </i>38</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="gallery_view.html">
-                                    <div class="image">
-                                        <img src="../../assets/files/gallery_thumb_02.jpg" alt="(12/16) 12월 통장연합회 임시회의 개최 의 이미지">
-                                    </div>
-                                    <strong>(12/16) 12월 통장연합회 임시회의 개최</strong>
-                                    <div class="sub-info">
-                                        <time datetime="2025-12-16">2025.12.16</time>
-                                        <span class="hit"><i class="blind">조회 : </i>37</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="gallery_view.html">
-                                    <div class="image">
-                                        <img src="../../assets/files/gallery_thumb_03.jpg" alt="2026 희망온돌 따뜻한 겨울나기 ＇행복나눔 영등포본동＇ 행사 의 이미지">
-                                    </div>
-                                    <strong>2026 희망온돌 따뜻한 겨울나기 ＇행복나눔 영등포본동＇ 행사</strong>
-                                    <div class="sub-info">
-                                        <time datetime="2025-12-10">2025.12.10 </time>
-                                        <span class="hit"><i class="blind">조회 : </i>56</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="gallery_view.html">
-                                    <div class="image">
-                                        <img src="../../assets/files/gallery_thumb_04.jpg" alt="(12/10) 12월 자원봉사회 월례회의 의 이미지">
-                                    </div>
-                                    <strong>(12/10) 12월 자원봉사회 월례회의</strong>
-                                    <div class="sub-info">
-                                        <time datetime="2025-12-10">2025.12.10</time>
-                                        <span class="hit"><i class="blind">조회 : </i>25</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="gallery_view.html">
-                                    <div class="image">
-                                        <img src="../../assets/files/gallery_thumb_04.jpg" alt="(12/2) 영등포본동 사업추진단 김장김치 나눔">
-                                    </div>
-                                    <strong>(12/2) 영등포본동 사업추진단 김장김치 나눔</strong>
-                                    <div class="sub-info">
-                                        <time datetime="2025-12-02">2025.12.02</time>
-                                        <span class="hit"><i class="blind">조회 : </i>49</span>
+                                        <time th:datetime="${#dates.format(board.regdate, 'yyyy-MM-dd')}" th:text="${#dates.format(board.regdate, 'yyyy.MM.dd')}">날짜 출력</time>
+                                        <span class="hit"><i class="blind">조회 : </i>[[*{hit}]]</span>
                                     </div>
                                 </a>
                             </li>
                         </ul>
                     </div>
 
-                    <div class="pagination">
-                        <div class="page-control">
-                            <a href="#" class="page-link first" title="처음 페이지로 이동"><span class="blind">처음 페이지</span></a>
-                            <a href="#" class="page-link prev" title="이전 10페이지로 이동"><span class="blind">이전 10페이지</span></a>
+                    <div class="pagination" th:if="${paging.total > 0}">
+                        <div class="page-control" th:if="${paging.arrows}">
+                            <a th:href="@{/news/gallery(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=1)}" class="page-link first" title="처음 페이지로 이동"><span class="blind">처음 페이지</span></a>
+                            <a th:href="@{/news/gallery(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${paging.prevPage})}" class="page-link prev" title="이전 10페이지로 이동"><span class="blind">이전 10페이지</span></a>
                         </div>
                         <div class="page-group">
-                            <strong class="page-active">1</strong>
-                            <a href="#" class="page-link" title="2 페이지로 이동">2</a>
-                            <a href="#" class="page-link" title="3 페이지로 이동">3</a>
+                            <th:block th:each="i : ${#numbers.sequence(paging.startPage, paging.endPage)}">
+                                <strong class="page-active" th:if="${i == cri.pageNum}" th:text="${i}">현재페이지숫자</strong>
+                                <a th:href="@{/news/gallery(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${i})}" class="page-link" th:if="${i != cri.pageNum}" th:title="${i + '페이지로 이동'}" th:text="${i}">링크페이지숫자</a>
+                            </th:block>
                         </div>
-                        <div class="page-control">
-                            <a href="#" class="page-link next" title="다음 10페이지로 이동"><span class="blind">다음 10페이지</span></a>
-                            <a href="#" class="page-link last" title="마지막 페이지로 이동"><span class="blind">마지막 페이지</span></a>
+                        <div class="page-control" th:if="${paging.arrows}">
+                            <a th:href="@{/news/gallery(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${paging.nextPage})}" class="page-link next" title="다음 10페이지로 이동"><span class="blind">다음 10페이지</span></a>
+                            <a th:href="@{/news/gallery(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${paging.realEnd})}" class="page-link last" title="마지막 페이지로 이동"><span class="blind">마지막 페이지</span></a>
                         </div>
                     </div>
                 </div>

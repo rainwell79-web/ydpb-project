@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.company.ydpb.mapper.GuNewsMapper">
+<mapper namespace="com.company.ydpb.mapper.CommunityMapper">
 
     <sql id="criteria">
         <where>
@@ -23,31 +23,31 @@
 
     <select id="getTotalCount" resultType="int">
         select count(*)
-        from tbl_gunews
+        from tbl_community
         <include refid="criteria" />
     </select>
 
-    <select id="getList" resultType="com.company.ydpb.domain.GuNewsVo">
+    <select id="getList" resultType="com.company.ydpb.domain.CommunityVo">
         select bno, bo_title, dept_name, hit, regdate
         from (
             select bno, bo_title, dept_name, hit, regdate,
                 row_number() over (order by bno desc) as rn
-            from /*+ INDEX_DESC(tbl_gunews SYS_C007226) */
-                tbl_gunews
+            from /*+ INDEX_DESC(tbl_community SYS_C007250) */
+                tbl_community
                 <include refid="criteria" />
              )
         where rn between (#{pageNum} - 1) * #{amount} + 1 and #{pageNum} * #{amount}
     </select>
 
     <select id="getFiles" resultType="com.company.ydpb.domain.FileVo">
-        select * from tbl_gunews_flies where bno = #{bno} order by file_id
+        select * from tbl_community_flies where bno = #{bno} order by file_id
     </select>
 
     <update id="updateCount">
-        update tbl_gunews set hit = hit + 1 where bno = #{bno}
+        update tbl_community set hit = hit + 1 where bno = #{bno}
     </update>
 
-    <select id="get" resultType="com.company.ydpb.domain.GuNewsVo">
-        select * from tbl_gunews where bno = #{bno}
+    <select id="get" resultType="com.company.ydpb.domain.CommunityVo">
+        select * from tbl_community where bno = #{bno}
     </select>
 </mapper>

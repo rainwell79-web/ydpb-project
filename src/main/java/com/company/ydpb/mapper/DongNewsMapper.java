@@ -12,9 +12,9 @@ public interface DongNewsMapper {
     int getTotalCount(Criteria cri);
     List<DongNewsVo> getList(Criteria cri);
     List<FileVo> getFiles(Long bno);
-    void updateCount(Long dsNo);
-    DongNewsVo get(Long dsNo);
+    void updateCount(Long bno);
+    DongNewsVo get(Long bno);
     int insert(DongNewsVo vo);
     int update(DongNewsVo vo);
-    int delete(Long dsNo);
+    int delete(Long bno);
 }

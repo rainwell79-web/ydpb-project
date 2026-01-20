@@ -33,7 +33,7 @@
                 <div id="contents" class="contents-board-view proposal-view inner">
                     <div class="board-info">
                         <span>제안일</span>
-                        <time datetime="2025-07-09">2025.12.12</time>
+                        <time th:datetime="${#dates.format(board.regdate, 'yyyy-MM-dd')}" th:text="${#dates.format(board.regdate, 'yyyy.MM.dd')}">날짜 출력</time>
                     </div>
                     <table class="table table-form">
                         <colgroup>
@@ -43,42 +43,34 @@
                         <tbody>
                         <tr>
                             <td colspan="2">
-                                <strong class="text-title">지하철역 미화개선</strong>
+                                <strong class="text-title" th:text="${board.boTitle}">제목 출력</strong>
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">현황 및 문제점</th>
                             <td>
-                                구로디지탈단지역 계단이 미끄럽고 보기에 너무 안 좋습니다<br>
-                                녹슨 계단 사진을 찍었는데 첨부가 안되네요<br>
-                                원광디지털대학교-지밸리로 이어지는 인도 바로 옆에 도로라 우천, 폭설시 너무 위험합니다
+                                <div class="text-content" th:text="${board.problem}">문제점 출력</div>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2" class="td-content">
-                                봄이 오면 안전 보안 및 미화 개선 바랍니다
+                                <div class="text-content" th:text="${board.boContent}">내용 출력</div>
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">기대효과</th>
                             <td>
-                                거주 주민의 안전과 행복 상승
+                                <div class="text-content" th:text="${board.effect}">기대효과 출력</div>
                             </td>
                         </tr>
-                        <tr>
+                        <tr th:if="${board.status != null}">
                             <th scope="row">처리상황</th>
-                            <td>완료</td>
+                            <td th:text="${board.status}">처리상황 출력</td>
                         </tr>
-                        <tr>
+                        <tr th:if="${board.opinion != null}">
                             <th scope="row">종합의견</th>
                             <td>
-                                안녕하십니까? 영등포구청 구민제안 담당자입니다.<br>
-                                귀하께서 제출해주신 ＇지하철역 미화개선＇건 관련하여<br>
-                                구로디지털단지역 민원 내용은 서울시 구로구 홈페이지에 문의주시기 바랍니다.<br>
-                                (구홈페이지 제안건은 타기관 이송이 안되는 점 양해부탁드립니다.)<br>
-                                <br>
-                                이에 「영등포구 제안제도 운영 조례」 제2조 제1호 사목(서울특별시 영등포구의 사무에 관한 사항이 아닌 것) 등에 따라 비제안 처리하고자 합니다.<br>
-                                우리 구 발전을 위한 소중한 의견 감사드립니다.
+                                <div class="text-content" th:text="${board.opinion}">종합의견 출력</div>
                             </td>
                         </tr>
                         </tbody>
@@ -89,7 +81,7 @@
                             <a href="proposal_edit.html" class="btn btn-bordered edit">수정</a>
                             <a href="#" class="btn btn-bordered delete">삭제</a>
                         </div>
-                        <a href="proposal_list.html" class="btn btn-write list">목록</a>
+                        <a th:href="@{/proposal/board(searchType=${cri.searchType}, keyword=${cri.keyword}, amount=${cri.amount}, pageNum=${cri.pageNum})}" class="btn btn-write list">목록</a>
                     </div>
 
                     <ul class="board-move-post">

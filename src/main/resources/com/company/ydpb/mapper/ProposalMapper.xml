@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.company.ydpb.mapper.ProposalMapper">
+
+    <sql id="criteria">
+        <where>
+            <choose>
+                <when test="searchType == 'T'.toString()">
+                    bo_title like '%'||#{keyword}||'%'
+                </when>
+                <when test="searchType == 'C'.toString()">
+                    bo_content like '%'||#{keyword}||'%'
+                </when>
+            </choose>
+        </where>
+    </sql>
+
+    <select id="getTotalCount" resultType="int">
+        select count(*)
+        from tbl_proposal
+        <include refid="criteria" />
+    </select>
+
+    <select id="getList" resultType="com.company.ydpb.domain.ProposalVo">
+        select bno, bo_title, pl_public, status, regdate, mem_id
+        from (
+            select bno, bo_title, pl_public, status, regdate, mem_id,
+                row_number() over (order by bno desc) as rn
+            from /*+ INDEX_DESC(tbl_proposal SYS_C007246) */
+                tbl_proposal
+                <include refid="criteria" />
+             )
+        where rn between (#{pageNum} - 1) * #{amount} + 1 and #{pageNum} * #{amount}
+    </select>
+
+    <select id="getFiles" resultType="com.company.ydpb.domain.FileVo">
+        select * from tbl_proposal_flies where bno = #{bno} order by file_id
+    </select>
+
+    <select id="get" resultType="com.company.ydpb.domain.ProposalVo">
+        select * from tbl_proposal where bno = #{bno}
+    </select>
+
+    <insert id="insert">
+        insert into tbl_proposal(bno, bo_title, problem, bo_content, effect, pl_public, mem_id)
+        values(seq_pl.nextval, #{boTitle}, #{problem}, #{boContent}, #{effect}, #{plPblic}, #{memId})
+    </insert>
+
+    <update id="update">
+        update tbl_proposal set bo_title = #{boTitle}, problem = #{problem}, bo_content = #{boContent}, effect = #{effect}, pl_public = #{plPblic} where bno = #{bno}
+    </update>
+
+    <delete id="delete">
+        delete from tbl_proposal where bno = #{bno}
+    </delete>
+</mapper>
