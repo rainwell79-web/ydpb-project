@@ -12,6 +12,7 @@
     <script th:src="@{/assets/js/jquery-3.3.1.min.js}"></script>
     <script th:src="@{/assets/js/prefixfree.min.js}"></script>
     <script th:src="@{/assets/js/ui.js}"></script>
+    <script th:src="@{/assets/js/ui_weather.js}"></script>
     <th:block th:replace="${headEtc}"></th:block>
 </head>
 <body>
@@ -161,12 +162,12 @@
                 <div class="inner">
                     <div class="weather">
                         <div class="weather-image">
-                            <img src="/assets/images/weather/weather_04.png" alt="흐림 이미지">
+                            <img src="" id="weather_temperature_img" alt="흐림 이미지" th:data-path="@{/assets/images/weather/}" style="opacity:0">
                         </div>
                         <div class="weather-info">
                             <ul>
-                                <li id="weather_temperature_num" class="temperature-num">4.1˚C</li>
-                                <li id="weather_temperature_text" class="temperature-text">흐림</li>
+                                <li id="weather_temperature_num" class="temperature-num">-</li>
+                                <li id="weather_temperature_text" class="temperature-text"></li>
                             </ul>
                             <dl>
                                 <dt>미세먼지</dt>

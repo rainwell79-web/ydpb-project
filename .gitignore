@@ -38,6 +38,7 @@ out/
 
 ### 설정 ###
 application.properties
+application-service.properties
 .gitignore
 
 ### 정적페이지 ###
