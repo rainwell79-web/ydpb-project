@@ -23,20 +23,26 @@ function initUi() {
     });
 
     // dev-news li 요소 추가
-    $('.header .dev-news ul').empty();
-    $('.header .dev-news ul').append($('#modalDevStatus .dev-status ul li').eq(0).clone());
-    $('.header .dev-news ul').append($('#modalDevStatus .dev-status ul li').eq(1).clone());
-    $('.header .dev-news ul').append($('#modalDevStatus .dev-status ul li').eq(2).clone());
-    $('.header .dev-news ul').append($('#modalDevStatus .dev-status ul li').eq(0).clone());
+    const DEV_LIST = $('.header .dev-news ul');
+    const DEV_LIST_ITEM = $('#modalDevStatus .dev-status ul li');
+    DEV_LIST.empty();
+    DEV_LIST.append(DEV_LIST_ITEM.eq(0).clone());
+    DEV_LIST.append(DEV_LIST_ITEM.eq(1).clone());
+    DEV_LIST.append(DEV_LIST_ITEM.eq(2).clone());
+    DEV_LIST.append(DEV_LIST_ITEM.eq(0).clone());
+
+    // UI 변수 설정
+    const GNB = $('#gnb');  // GNB 전체 영역
+    const DIM = $('.dim');  // GNB, 레이어팝업창 등이 보여질 때 바닥 가려주는 영역
 
     // gnb 마우스엔터 이벤트
-    $('#gnb').on('mouseenter', function() {
+    GNB.on('mouseenter', function() {
         gnbActive();
     });
     
     // gnb 마우스리브 이벤트
-    $('#gnb').on('mouseleave', function() {
-        if($('#gnb a:focus').length == 0) {
+    GNB.on('mouseleave', function() {
+        if($('#gnb a:focus').length === 0) {
             gnbDisable();
         }
     });
@@ -49,7 +55,7 @@ function initUi() {
 
     // 해더메뉴 a 태그 포커스 이벤트
     $('#header_menu a').on('focus', function() {
-        if($(this).closest('#gnb').length == 0) {
+        if($(this).closest('#gnb').length === 0) {
             gnbDisable();
         }
         else {
@@ -64,20 +70,20 @@ function initUi() {
 
     // gnb 서브메뉴 활성화 함수
     function gnbActive() {
-        $('#gnb').addClass('active');
-        $('.dim').show();
+        GNB.addClass('active');
+        DIM.show();
     }
 
     // gnb 서브메뉴 비활성화 함수
     function gnbDisable() {
-        $('#gnb').removeClass('active');
+        GNB.removeClass('active');
         $('#gnb [data-gnb-count]').removeClass('active');
-        $('.dim').hide();
+        DIM.hide();
     }
 
     // gnb 배경 이미지 교체 함수
     function gnbBg(_this) {
-        var idx = $(_this).data('gnb-count');
+        let idx = $(_this).data('gnb-count');
         $('#gnb [data-outline]').hide();
         $('#gnb [data-outline="' + idx + '"]').show();
         $('#gnb [data-gnb-count]').removeClass('active');
@@ -85,8 +91,8 @@ function initUi() {
     }
 
     // dim 화면 클릭 시 gnb 비활성화
-    $('.dim').on('click', function() {
-        if($('#gnb').hasClass('active')) {
+    DIM.on('click', function() {
+        if(GNB.hasClass('active')) {
             gnbDisable();
         }
     });
@@ -197,14 +203,15 @@ function layerAlert(text) {
     const fadeInTime = 200;
     const fadeOutTime = 600;
     const delayTime = 1000;
+    const LAYER_AlERT = $('.layer-alert');
 
-    $('.layer-alert').remove();
+    LAYER_AlERT.remove();
     clearTimeout(layerAlertTimeout);
     let html = '<div class="layer-alert">' + text + '</div>';
     $('body').append(html);
-    $('.layer-alert').stop().fadeIn(fadeInTime);
+    LAYER_AlERT.stop().fadeIn(fadeInTime);
     layerAlertTimeout = setTimeout(function() {
-        $('.layer-alert').stop().fadeOut(fadeOutTime, function() {
+        LAYER_AlERT.stop().fadeOut(fadeOutTime, function() {
             $(this).remove();
         });
     }, delayTime);
@@ -232,7 +239,7 @@ const MODAL = {
                 MODAL.close(id);
             });
             modalWrap.bind('click', function(e) {
-                if(e.target.id == id) {
+                if(e.target.id === id) {
                     MODAL.close(id);
                 }
             });
@@ -257,81 +264,3 @@ const MODAL = {
         }, this.effectTime);
     }
 }
-
-const MENU = [{
-    id: 'A',
-    name: '우리동이야기',
-    href: '/',
-    sub: [{
-        id: 'A',
-        name: '영등포본동 주민센터',
-        href: '/'
-    }, {
-        id: 'B',
-        name: '직원별업무안내',
-        href: '/dong/staff.html'
-    }, {
-        id: 'C',
-        name: '일반현황',
-        href: '/dong/status.html'
-    }, {
-        id: 'D',
-        name: '찾아오시는길',
-        href: '/dong/directions.html'
-    }, {
-        id: 'E',
-        name: '동유래',
-        href: '/dong/origin.html'
-    }]
-}, {
-    id: 'B',
-    name: '우리동소식',
-    href: '/news/dong_news_list.html',
-    sub: [{
-        id: 'A',
-        name: '우리동소식',
-        href: '/news/dong_news_list.html'
-    }, {
-        id: 'B',
-        name: '구청소식',
-        href: '/news/gu_news_list.html'
-    }, {
-        id: 'C',
-        name: '포토갤러리',
-        href: '/news/gallery_list.html'
-    }]
-}, {
-    id: 'C',
-    name: '주민제안',
-    href: '/proposal/proposal_guide.html',
-    sub: [{
-        id: 'A',
-        name: '주민제안 안내',
-        href: '/proposal/proposal_guide.html'
-    }, {
-        id: 'B',
-        name: '주민제안',
-        href: '/proposal/proposal_list.html'
-    }]
-}, {
-    id: 'D',
-    name: '자치회관',
-    href: '/community/community_guide.html',
-    sub: [{
-        id: 'A',
-        name: '자치회관이란?',
-        href: '/community/community_guide.html'
-    }, {
-        id: 'B',
-        name: '자치회관 게시판',
-        href: '/community/community_list.html'
-    }, {
-        id: 'C',
-        name: '주민자치의원',
-        href: '#'
-    }, {
-        id: 'D',
-        name: '프로그램현황',
-        href: '#'
-    }]
-}];
