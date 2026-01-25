@@ -12,7 +12,6 @@
     <script th:src="@{/assets/js/jquery-3.3.1.min.js}"></script>
     <script th:src="@{/assets/js/prefixfree.min.js}"></script>
     <script th:src="@{/assets/js/ui.js}"></script>
-    <script th:src="@{/assets/js/ui_weather.js}"></script>
     <th:block th:replace="${headEtc}"></th:block>
 </head>
 <body>
@@ -161,19 +160,19 @@
             <div class="header-utils">
                 <div class="inner">
                     <div class="weather">
-                        <div class="weather-image">
-                            <img src="" id="weather_temperature_img" alt="흐림 이미지" th:data-path="@{/assets/images/weather/}" style="opacity:0">
+                        <div id="weather_image" class="weather-image">
+                            <img th:src="@{/assets/images/weather/weather_01.png}" id="weather_temperature_img" alt="날씨 이미지" th:data-path="@{/assets/images/weather/}">
                         </div>
                         <div class="weather-info">
-                            <ul>
+                            <ul id="weather_status">
                                 <li id="weather_temperature_num" class="temperature-num">-</li>
                                 <li id="weather_temperature_text" class="temperature-text"></li>
                             </ul>
-                            <dl>
+                            <dl id="weather_dust">
                                 <dt>미세먼지</dt>
-                                <dd id="dust_text1" class="dust01">좋음</dd>
+                                <dd id="dust_text1" class="">-</dd>
                                 <dt>초미세먼지</dt>
-                                <dd id="dust_text2" class="dust01">좋음</dd>
+                                <dd id="dust_text2" class="">-</dd>
                             </dl>
                         </div>
                     </div>

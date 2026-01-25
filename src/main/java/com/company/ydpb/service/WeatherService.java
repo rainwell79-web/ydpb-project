@@ -3,20 +3,25 @@ package com.company.ydpb.service;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 
 @Service
 public class WeatherService {
-    @Value("${weather.service-key}")
+    @Value("${WEATHER_SERVICE_KEY}")
     private String SERVICE_KEY;
-
-    private static final String API_URL =
-            "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst";
+    private static final String API_URL = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst";
+    private static final String DUST_API_URL = "https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty";
 
     @Setter(onMethod_ = @Autowired)
     private RestTemplate restTemplate;
@@ -63,5 +68,26 @@ public class WeatherService {
                 .toUri();
 
         return restTemplate.getForObject(uri, String.class);
+    }
+
+    public String getDust() {
+        String stationName = URLEncoder.encode("영등포구", StandardCharsets.UTF_8);
+
+        URI uri = UriComponentsBuilder
+                .fromUriString(DUST_API_URL)
+                .queryParam("serviceKey", SERVICE_KEY)
+                .queryParam("pageNo", 1)
+                .queryParam("numOfRows", 100)
+                .queryParam("returnType", "json")
+                .queryParam("stationName", stationName)
+                .queryParam("dataTerm", "DAILY")
+                .queryParam("ver", "1.0")
+                .build(true)
+                .toUri();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("User-Agent", "Mozilla/5.0");
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+        ResponseEntity<String> response = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
+        return response.getBody();
     }
 }

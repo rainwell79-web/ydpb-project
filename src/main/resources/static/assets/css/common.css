@@ -85,7 +85,17 @@ body {min-width: 1240px; color: #4c4c4c; font-size: 1.6rem; font-family: 'Spoqa 
 .weather .weather-info dl {display: flex; padding-bottom: 4px; color: #000; font-size: 1.4rem;}
 .weather .weather-info dd {padding: 0 20px 0 5px; font-weight: 600; background-repeat: no-repeat; background-position: right center; background-size: 16px auto;}
 .weather .weather-info .dust01 {color: #0073d1; background-image: url(../images/weather/dust_state_01.png);}
+.weather .weather-info .dust02 {color: #008509; background-image: url(../images/weather/dust_state_02.png);}
+.weather .weather-info .dust03 {color: #cd4800; background-image: url(../images/weather/dust_state_03.png);}
+.weather .weather-info .dust04 {color: #cc2519; background-image: url(../images/weather/dust_state_04.png);}
 .weather .weather-info dd + dt {margin-left: 20px;}
+.weather .weather-image.active,
+.weather .weather-info ul.active,
+.weather .weather-info dl.active {animation: weatherView 300ms;}
+@keyframes weatherView {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
 .header-search {position: absolute; left: 50%; top: 30px; width: 500px; transform: translateX(-40%);}
 .header-search form {display: block; position: relative; padding-right: 26px;}
 .header-search input[type="search"] {width: 100%; padding: 0 40px 0 28px; color: #222; font-size: 1.8rem; font-weight: 600; line-height: 54px; border: 3px solid transparent; border-radius: 20px 20px 20px 38px; background-clip: padding-box, border-box; background-origin: border-box; background-image: linear-gradient(#fff, #fff), linear-gradient(90deg, #1fb8df, #00cccc);}

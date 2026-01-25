@@ -38,6 +38,7 @@ out/
 
 ### 설정 ###
 application.properties
+application-dev.properties
 application-service.properties
 .gitignore
 
