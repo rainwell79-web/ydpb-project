@@ -10,7 +10,6 @@
     <link rel="stylesheet" th:href="@{/assets/css/common.css}">
     <link rel="stylesheet" th:href="@{/assets/css/style_page.css}">
     <script th:src="@{/assets/js/jquery-3.3.1.min.js}"></script>
-    <script th:src="@{/assets/js/prefixfree.min.js}"></script>
     <script th:src="@{/assets/js/ui.js}"></script>
     <th:block th:replace="${headEtc}"></th:block>
 </head>
@@ -199,11 +198,11 @@
                     </div>
                     <div class="location-path">
                         <div class="location-home">홈</div>
-                        <div class="location-next">></div>
+                        <div class="location-next">&gt;</div>
                         <div class="location-text">
                             <a th:href="@{/}">영등포본동</a>
                         </div>
-                        <div class="location-next">></div>
+                        <div class="location-next">&gt;</div>
                         <th:block th:replace="${location}"></th:block>
                         <div class="location-btns">
                             <a href="#" class="btn-location btn-print" title="프린트 하기">프린트</a>

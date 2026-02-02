@@ -15,4 +15,5 @@ public interface DongNewsService {
     int write(DongNewsVo vo);
     int edit(DongNewsVo vo);
     int delete(Long bno);
+    int getCountPeriod(String startDate, String endDate);
 }

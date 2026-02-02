@@ -54,4 +54,9 @@ public class DongNewsServiceImpl implements DongNewsService {
     public int delete(Long bno) {
         return mapper.delete(bno);
     }
+
+    @Override
+    public int getCountPeriod(String startDate, String endDate) {
+        return mapper.getCountPeriod(startDate, endDate);
+    }
 }

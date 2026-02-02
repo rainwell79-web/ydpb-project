@@ -23,32 +23,33 @@ function initUi() {
     });
 
     // dev-news li 요소 추가
-    const DEV_LIST = $('.header .dev-news ul');
-    const DEV_LIST_ITEM = $('#modalDevStatus .dev-status ul li');
-    DEV_LIST.empty();
-    DEV_LIST.append(DEV_LIST_ITEM.eq(0).clone());
-    DEV_LIST.append(DEV_LIST_ITEM.eq(1).clone());
-    DEV_LIST.append(DEV_LIST_ITEM.eq(2).clone());
-    DEV_LIST.append(DEV_LIST_ITEM.eq(0).clone());
+    const $dev_list = $('.header .dev-news ul');
+    const $dev_list_item = $('#modalDevStatus .dev-status ul li');
+    $dev_list.empty();
+    $dev_list.append($dev_list_item.eq(0).clone());
+    $dev_list.append($dev_list_item.eq(1).clone());
+    $dev_list.append($dev_list_item.eq(2).clone());
+    $dev_list.append($dev_list_item.eq(0).clone());
 
     // UI 변수 설정
-    const GNB = $('#gnb');  // GNB 전체 영역
-    const DIM = $('.dim');  // GNB, 레이어팝업창 등이 보여질 때 바닥 가려주는 영역
+    const $gnb = $('#gnb');  // GNB 전체 영역
+    const $dim = $('.dim');  // GNB, 레이어팝업창 등이 보여질 때 바닥 가려주는 영역
+    const $gnbDep1 = $('#gnb [data-gnb-count]');    // GNB 1depth
 
     // gnb 마우스엔터 이벤트
-    GNB.on('mouseenter', function() {
+    $gnb.on('mouseenter', function() {
         gnbActive();
     });
     
     // gnb 마우스리브 이벤트
-    GNB.on('mouseleave', function() {
+    $gnb.on('mouseleave', function() {
         if($('#gnb a:focus').length === 0) {
             gnbDisable();
         }
     });
 
     // gnb 1뎁스 메뉴 마우스엔터 이벤트
-    $('#gnb [data-gnb-count]').on('mouseenter', function() {
+    $gnbDep1.on('mouseenter', function() {
         gnbBg(this);
         $('#header_menu a:focus').blur();
     });
@@ -70,15 +71,15 @@ function initUi() {
 
     // gnb 서브메뉴 활성화 함수
     function gnbActive() {
-        GNB.addClass('active');
-        DIM.show();
+        $gnb.addClass('active');
+        $dim.show();
     }
 
     // gnb 서브메뉴 비활성화 함수
     function gnbDisable() {
-        GNB.removeClass('active');
-        $('#gnb [data-gnb-count]').removeClass('active');
-        DIM.hide();
+        $gnb.removeClass('active');
+        $gnbDep1.removeClass('active');
+        $dim.hide();
     }
 
     // gnb 배경 이미지 교체 함수
@@ -86,13 +87,13 @@ function initUi() {
         let idx = $(_this).data('gnb-count');
         $('#gnb [data-outline]').hide();
         $('#gnb [data-outline="' + idx + '"]').show();
-        $('#gnb [data-gnb-count]').removeClass('active');
+        $gnbDep1.removeClass('active');
         $(_this).addClass('active');
     }
 
     // dim 화면 클릭 시 gnb 비활성화
-    DIM.on('click', function() {
-        if(GNB.hasClass('active')) {
+    $dim.on('click', function() {
+        if($gnb.hasClass('active')) {
             gnbDisable();
         }
     });
@@ -116,7 +117,7 @@ function initUi() {
     });
 
     // 날씨 api 연동
-    $.getJSON('/weather/status', function(data) {
+    /*$.getJSON('/weather/status', function(data) {
         const dataArray = data.response.body.items.item;
         const map = new Map();
         dataArray.forEach(item => {
@@ -190,7 +191,7 @@ function initUi() {
     })
     .fail(function(xhr, status, err) {
         console.log(err);
-    });
+    });*/
 }
 
 // 레이어 경고창 timeout 함수 사용을 위한 변수 선언

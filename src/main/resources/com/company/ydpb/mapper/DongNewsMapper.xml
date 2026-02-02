@@ -47,4 +47,8 @@
     <select id="get" resultType="com.company.ydpb.domain.DongNewsVo">
         select * from tbl_dongnews where bno = #{bno}
     </select>
+
+    <select id="getCountPeriod" resultType="int">
+        select count(*) from tbl_dongnews where regdate &gt;= #{startDate} and regdate &lt; #{endDate}
+    </select>
 </mapper>

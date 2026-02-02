@@ -17,4 +17,5 @@ public interface DongNewsMapper {
     int insert(DongNewsVo vo);
     int update(DongNewsVo vo);
     int delete(Long bno);
+    int getCountPeriod(String startDate, String endDate);
 }
