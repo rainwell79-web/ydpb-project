@@ -1,15 +1,4 @@
 $(document).ready(function() {
-
-    initUi();
-
-});
-
-/**
- * ui 스크립트 초기화
- * !!!공통영역 load 호출 이후 스크립트 추가를 위해 함수화 한 것이므로 백엔드 개발 시 수정할 수 있음을 인지할 것!!!
- */
-function initUi() {
-
     // 링크 # 처리한 a 태그 클릭 이벤트 시 경고창 출력
     $('a[href="#"]').on('click', function(e) {
         e.preventDefault();
@@ -31,7 +20,7 @@ function initUi() {
     $dev_list.append($dev_list_item.eq(2).clone());
     $dev_list.append($dev_list_item.eq(0).clone());
 
-    // UI 변수 설정
+    // GNB element 변수 설정
     const $gnb = $('#gnb');  // GNB 전체 영역
     const $dim = $('.dim');  // GNB, 레이어팝업창 등이 보여질 때 바닥 가려주는 영역
     const $gnbDep1 = $('#gnb [data-gnb-count]');    // GNB 1depth
@@ -40,15 +29,15 @@ function initUi() {
     $gnb.on('mouseenter', function() {
         gnbActive();
     });
-    
-    // gnb 마우스리브 이벤트
+
+    // GNB 마우스리브 이벤트
     $gnb.on('mouseleave', function() {
         if($('#gnb a:focus').length === 0) {
             gnbDisable();
         }
     });
 
-    // gnb 1뎁스 메뉴 마우스엔터 이벤트
+    // GNB 1뎁스 메뉴 마우스엔터 이벤트
     $gnbDep1.on('mouseenter', function() {
         gnbBg(this);
         $('#header_menu a:focus').blur();
@@ -69,20 +58,20 @@ function initUi() {
         $(this).blur();
     });
 
-    // gnb 서브메뉴 활성화 함수
+    // GNB 서브메뉴 활성화 함수
     function gnbActive() {
         $gnb.addClass('active');
         $dim.show();
     }
 
-    // gnb 서브메뉴 비활성화 함수
+    // GNB 서브메뉴 비활성화 함수
     function gnbDisable() {
         $gnb.removeClass('active');
         $gnbDep1.removeClass('active');
         $dim.hide();
     }
 
-    // gnb 배경 이미지 교체 함수
+    // GNB 배경 이미지 교체 함수
     function gnbBg(_this) {
         let idx = $(_this).data('gnb-count');
         $('#gnb [data-outline]').hide();
@@ -91,7 +80,7 @@ function initUi() {
         $(_this).addClass('active');
     }
 
-    // dim 화면 클릭 시 gnb 비활성화
+    // dim 화면 클릭 시 GNB 비활성화
     $dim.on('click', function() {
         if($gnb.hasClass('active')) {
             gnbDisable();
@@ -178,7 +167,7 @@ function initUi() {
         console.log(err);
     });
 
-    // 미세먼지 api 연동 : 20260123 최상림
+    // 미세먼지 api 연동
     $.getJSON('/weather/dust', function(data) {
         const dataArray = data.response.body.items;
         const dustInfo = dataArray[dataArray.length - 1];
@@ -192,7 +181,7 @@ function initUi() {
     .fail(function(xhr, status, err) {
         console.log(err);
     });*/
-}
+});
 
 // 레이어 경고창 timeout 함수 사용을 위한 변수 선언
 let layerAlertTimeout;
